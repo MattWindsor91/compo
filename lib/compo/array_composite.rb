@@ -8,7 +8,7 @@ module Compo
   # if an item with an ID less than the item in question is deleted.  This
   # means the ID function for objects in a ListComposite may report different
   # values at different times.
-  class ListComposite
+  class ArrayComposite
     include Composite
     extend Forwardable
 

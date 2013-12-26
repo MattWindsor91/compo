@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'compo'
 
-describe Compo::ListComposite do
+describe Compo::ArrayComposite do
   let(:child1) { double(:child1) }
   let(:child2) { double(:child2) }
   let(:child3) { double(:child3) }

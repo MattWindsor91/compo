@@ -1,5 +1,5 @@
 require 'compo/composite'
-require 'compo/list_composite'
+require 'compo/array_composite'
 require 'compo/version'
 
 # The main module for Compo.
