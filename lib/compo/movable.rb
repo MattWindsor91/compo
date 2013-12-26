@@ -6,7 +6,14 @@ module Compo
   #
   # It expects the current parent to be reachable from #parent.
   module Movable
-    # Moves this model object to a new parent with a new ID.
+    # Moves this model object to a new parent with a new ID
+    #
+    # @api  public
+    # @example  Moves the object to a new parent.
+    #   movable.move_to(parent, :id)
+    # @example  Moves the object out of its parent (deleting it, if there are
+    #   no other live references).
+    #   movable.move_to(nil, nil)
     #
     # @param new_parent [ModelObject] The new parent for this object (can be
     #   nil).
