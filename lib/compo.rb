@@ -1,5 +1,6 @@
-require "compo/version"
+require 'compo/composite'
+require 'compo/version'
 
+# The main module for Compo.
 module Compo
-  # Your code goes here...
 end
