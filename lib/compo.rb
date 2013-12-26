@@ -3,6 +3,7 @@ require 'compo/composite'
 require 'compo/hash_composite'
 require 'compo/movable'
 require 'compo/null_composite'
+require 'compo/parent_tracker'
 require 'compo/version'
 
 # The main module for Compo.
