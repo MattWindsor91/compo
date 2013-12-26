@@ -1,6 +1,7 @@
-require 'compo/composite'
 require 'compo/array_composite'
+require 'compo/composite'
 require 'compo/hash_composite'
+require 'compo/movable'
 require 'compo/null_composite'
 require 'compo/version'
 
