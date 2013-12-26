@@ -233,4 +233,16 @@ describe MockComposite do
       end
     end
   end
+
+  describe '#each' do
+    it 'delegates to the #each implementation of the hash from #children' do
+      children = double(:children)
+
+      allow(subject).to receive(:children).and_return(children)
+      expect(subject).to receive(:children).once.with(no_args)
+      expect(children).to receive(:each).once
+
+      subject.each
+    end
+  end
 end

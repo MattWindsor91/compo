@@ -18,6 +18,9 @@ module Compo
   #               always return the child's current ID so long as it is part
   #               of the Composite.
   module Composite
+    extend Forwardable
+    include Enumerable
+
     # Adds a child to this Composite
     #
     # @api  public
@@ -65,6 +68,8 @@ module Compo
     def remove_id(id)
       remove_id!(id).tap(&method(:remove_parent))
     end
+
+    def_delegator :children, :each
 
     protected
 
