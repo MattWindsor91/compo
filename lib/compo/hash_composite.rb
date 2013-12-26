@@ -23,7 +23,7 @@ module Compo
     end
 
     def_delegator :@children, :delete, :remove_id!
-    attr_reader :@children
+    attr_reader :children
 
     def id_function(object)
       id = @children.key(object)
