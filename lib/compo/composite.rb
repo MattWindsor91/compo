@@ -20,7 +20,7 @@ module Compo
   module Composite
     # Adds a child to this Composite
     #
-    # @api public
+    # @api  public
     # @example  Adds a child with intended id 3.
     #   composite.add_child(3, leaf)
     #
@@ -39,7 +39,7 @@ module Compo
     # This method can fail (for example, if the child does not exist in the
     # Composite).
     #
-    # @api public
+    # @api  public
     # @example  Removes a child.
     #   composite.remove(child)
     #
@@ -55,7 +55,7 @@ module Compo
     # This method can fail (for example, if the ID does not exist in the
     # Composite).
     #
-    # @api public
+    # @api  public
     # @example  Removes the child with ID :foo.
     #   composite.remove_id(:foo)
     #
@@ -73,7 +73,7 @@ module Compo
     # This also updates its ID function to point to the child's ID under this
     # parent.
     #
-    # @api private
+    # @api  private
     #
     # @param child [Object]  The child whose parent assignment is being set.
     #
@@ -86,7 +86,7 @@ module Compo
     #
     # This also clears its ID function.
     #
-    # @api private
+    # @api  private
     #
     # @param child [Object]  The child whose parent assignment is being set.
     #
@@ -99,7 +99,7 @@ module Compo
     #
     # Either this or #remove_id! must be overridden by the implementing class.
     #
-    # @api private
+    # @api  private
     #
     # @param child [Object]  The child to remove from this object.
     #
@@ -112,7 +112,7 @@ module Compo
     #
     # Either this or #remove! must be overridden by the implementing class.
     #
-    # @api private
+    # @api  private
     #
     # @param id [Object]  The current ID of the child to remove from this
     #   object.

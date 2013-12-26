@@ -54,10 +54,10 @@ module Compo
 
     # Creates an ID function for the given child
     #
-    # This function is O(1), as it stores the ID assigned to the child at
+    # The returned proc is O(1), as it stores the ID assigned to the child at
     # calling time under the assumption that it will not change until removal.
     #
-    # @api private
+    # @api  private
     #
     # @param child [Object]  The child whose ID is to be returned by the proc.
     #
