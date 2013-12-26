@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'compo'
 
+# Mock implementation of a Composite
 class MockComposite
   include Compo::Composite
 end

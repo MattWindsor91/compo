@@ -22,17 +22,17 @@ describe Compo::ArrayComposite do
       specify { expect(subject.add(:mr_flibble, child1)).to be_nil }
 
       it 'does not add to the list of children' do
-          subject.add(:rimmer, child1)
-          expect(subject.children).to eq({})
+        subject.add(:rimmer, child1)
+        expect(subject.children).to eq({})
 
-          subject.add(0, child1)
-          subject.add(:lister, child2)
-          expect(subject.children).to eq(0 => child1)
+        subject.add(0, child1)
+        subject.add(:lister, child2)
+        expect(subject.children).to eq(0 => child1)
 
-          subject.add(1, child2)
-          subject.add(:cat, child3)
-          expect(subject.children).to eq(0 => child1, 1 => child2)
-        end
+        subject.add(1, child2)
+        subject.add(:cat, child3)
+        expect(subject.children).to eq(0 => child1, 1 => child2)
+      end
     end
     context 'when the ID is Numeric' do
       context 'and is equal to the number of children' do

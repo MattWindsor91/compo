@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'compo'
 
+# Mock implementation of a Movable
 class MockMovable
   include Compo::Movable
 end

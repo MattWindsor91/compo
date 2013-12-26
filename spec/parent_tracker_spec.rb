@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'compo'
 
+# Mock implementation of a ParentTracker
 class MockParentTracker
   include Compo::ParentTracker
 
