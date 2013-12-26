@@ -52,4 +52,40 @@ describe MockComposite do
       end
     end
   end
+
+  describe '#remove' do
+    before(:each) { allow(subject).to receive(:remove!) }
+
+    context 'when #remove! returns nil' do
+      before(:each) { allow(subject).to receive(:remove!).and_return(nil) }
+
+      specify { expect(subject.remove(child)).to be_nil }
+
+      it 'calls #remove! with the child given' do
+        expect(subject).to receive(:remove!).once.with(child)
+        subject.remove(child)
+      end
+    end
+
+    context 'when #remove! returns the child' do
+      before(:each) do
+        allow(subject).to receive(:remove!).and_return(child)
+        allow(child).to receive(:remove_parent)
+      end
+
+      it 'calls #remove! with the and child given' do
+        expect(subject).to receive(:remove!).once.with(child)
+        subject.remove(child)
+      end
+
+      it 'calls #remove_parent on the child with no arguments' do
+        expect(child).to receive(:remove_parent).once.with(no_args)
+        subject.remove(child)
+      end
+
+      it 'returns the given child' do
+        expect(subject.remove(child)).to eq(child)
+      end
+    end
+  end
 end

@@ -92,7 +92,7 @@ module Compo
     #
     # @return [void]
     def remove_parent(child)
-      child.update_parent(nil, nil) unless child.nil?
+      child.remove_parent unless child.nil?
     end
 
     # Default implementation of #remove! in terms of #remove_id!
