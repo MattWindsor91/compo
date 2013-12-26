@@ -4,10 +4,13 @@ require 'compo/composite'
 module Compo
   # Implementation of Composite that stores its children in an Array.
   #
-  # IDs for items entering a ListComposite must be numeric, and will change
-  # if an item with an ID less than the item in question is deleted.  This
-  # means the ID function for objects in a ListComposite may report different
-  # values at different times.
+  # IDs for items entering a ListComposite must be numeric, and will change if
+  # an item with an ID less than the item in question is deleted or inserted.
+  # This means the ID function for objects in a ListComposite may report
+  # different values at different times.
+  #
+  # Adding an object at an occupied ID moves the occupant and those at
+  # successive IDs up by one.
   class ArrayComposite
     include Composite
     extend Forwardable
@@ -16,14 +19,14 @@ module Compo
       @children = []
     end
 
-    def_delegator :@children, :delete, :remove!
-    def_delegator :@children, :delete_at, :remove_id!
-
     def children
       Hash[(0...@children.size).zip(@children)]
     end
 
     private
+
+    def_delegator :@children, :delete, :remove!
+    def_delegator :@children, :delete_at, :remove_id!
 
     def add!(id, child)
       can_insert?(id) ? do_insert(id, child) : nil
