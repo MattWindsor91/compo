@@ -34,7 +34,7 @@ module Compo
     #
     # @return [Object]  The added child if successful; nil otherwise.
     def add(id, child)
-      add!(id, child).tap(&method(:assign_parent))
+      add!(id, child).tap(&method(:assign_parent_to))
     end
 
     # Removes a child from this Composite directly
@@ -50,7 +50,7 @@ module Compo
     #
     # @return [Object]  The removed child if successful; nil otherwise.
     def remove(child)
-      remove!(child).tap(&method(:remove_parent))
+      remove!(child).tap(&method(:remove_parent_of))
     end
 
     # Removes a child from this Composite, given its ID
@@ -66,7 +66,7 @@ module Compo
     #
     # @return [Object]  The removed child if successful; nil otherwise.
     def remove_id(id)
-      remove_id!(id).tap(&method(:remove_parent))
+      remove_id!(id).tap(&method(:remove_parent_of))
     end
 
     def_delegator :children, :each
@@ -83,7 +83,7 @@ module Compo
     # @param child [Object]  The child whose parent assignment is being set.
     #
     # @return [void]
-    def assign_parent(child)
+    def assign_parent_to(child)
       child.update_parent(self, id_function(child)) unless child.nil?
     end
 
@@ -96,7 +96,7 @@ module Compo
     # @param child [Object]  The child whose parent assignment is being set.
     #
     # @return [void]
-    def remove_parent(child)
+    def remove_parent_of(child)
       child.remove_parent unless child.nil?
     end
 
