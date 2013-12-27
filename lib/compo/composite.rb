@@ -69,6 +69,23 @@ module Compo
       remove_id!(id).tap(&method(:remove_parent_of))
     end
 
+    # Gets the child in this Composite with the given ID
+    #
+    # @api  public
+    # @example  Gets the child with ID :in, if children is {in: 3}.
+    #   composite.get_child(:in)
+    #   #=> 3
+    # @example  Fails to get the child with ID :out, if children is {in: 3}.
+    #   composite.get_child(:out)
+    #   #=> nil
+    #
+    # @param id  [Object]  The ID of the child to get from this Composite.
+    #
+    # @return [Object]  The child if successful; nil otherwise.
+    def get_child(id)
+      children[id]
+    end
+
     def_delegator :children, :each
 
     protected
