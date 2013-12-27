@@ -1,2 +1,7 @@
+0.1.1 (2013-12-27)
+  - Avoid a function name clash between #remove_parent on a child and
+    #remove_parent on a parent.  The latter is now #remove_parent_of.
+    #assign_parent is now #assign_parent_to, to match.
+
 0.1.0 (2013-12-26)
   - Initial version.
