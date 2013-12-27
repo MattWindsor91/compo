@@ -246,4 +246,24 @@ describe MockComposite do
       subject.each
     end
   end
+
+  describe '#get_child' do
+    before(:each) { allow(subject).to receive(:children).and_return(children) }
+    let(:children) { { in_children: child } }
+
+    it 'calls #children' do
+      expect(subject).to receive(:children).once
+      subject.get_child(:in_children)
+    end
+
+    context 'when the argument is in #children' do
+      it 'returns the child' do
+        expect(subject.get_child(:in_children)).to eq(child)
+      end
+    end
+
+    context 'when the argument is in #children' do
+      specify { expect(subject.get_child(:not_in_children)).to be_nil }
+    end
+  end
 end
