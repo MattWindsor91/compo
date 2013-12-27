@@ -1,6 +1,14 @@
 # Compo
 
-TODO: Write a gem description
+**Compo** is a library providing mixins and base classes for setting up
+composite objects.
+
+It implements something similar to the Gang of Four Composite pattern, but with
+the difference that children are identified in their parents by an *ID*,
+such as the index or hash key, that the child is aware of at all times.
+
+Compo was designed for the purpose of creating models whose natural composite
+structure can be expressed as URLs made from their recursive ID trails.
 
 ## Installation
 
