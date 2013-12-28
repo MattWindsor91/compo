@@ -31,7 +31,6 @@ describe MockUrlReferenceable do
       end
 
       it 'returns the joining of the parent URL and ID with a slash' do
-
         expect(subject.url).to eq('dog/goes/id')
       end
     end
