@@ -6,5 +6,5 @@ class MockUrlReferenceable
   include Compo::UrlReferenceable
 end
 
-describe MockUrlReferenceable
+describe MockUrlReferenceable do
 end
