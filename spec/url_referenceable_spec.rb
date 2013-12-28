@@ -7,4 +7,9 @@ class MockUrlReferenceable
 end
 
 describe MockUrlReferenceable do
+  describe '#url' do
+  end
+
+  describe '#parent_url' do
+  end
 end
