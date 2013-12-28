@@ -3,5 +3,9 @@ module Compo
     def url
       ''
     end
+
+    def parent_url
+      nil
+    end
   end
 end
