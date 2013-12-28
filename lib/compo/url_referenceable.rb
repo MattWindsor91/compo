@@ -5,6 +5,7 @@ module Compo
     end
 
     def parent_url
+      parent
       nil
     end
   end
