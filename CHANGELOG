@@ -1,3 +1,8 @@
+0.1.3 (2013-12-28)
+  - Implement ArrayBranch and HashBranch.  These bundle ArrayComposite and
+    HashComposite up with the Movable and ParentTracker mixins, for
+    convenience.
+
 0.1.2 (2013-12-27)
   - Implement and specify #get_child.
 
