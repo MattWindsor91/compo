@@ -1,8 +1,7 @@
 module Compo
   module UrlReferenceable
     def url
-      id unless parent.nil?
-      ''
+      parent.nil? ? '' : [parent_url, id].join('/')
     end
 
     def parent_url
