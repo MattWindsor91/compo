@@ -2,6 +2,7 @@
 require 'compo/composite'
 require 'compo/movable'
 require 'compo/parent_tracker'
+require 'compo/url_referenceable'
 
 # Composite implementations
 require 'compo/array_composite'
