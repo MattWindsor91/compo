@@ -26,6 +26,8 @@ describe MockUrlReferenceable do
   describe '#parent_url' do
     context 'when the UrlReferenceable has no parent' do
       let(:parent) { nil }
+
+      specify { expect(subject.parent_url).to be_nil }
     end
 
     context 'when the UrlReferenceable has a parent' do
