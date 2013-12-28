@@ -26,6 +26,12 @@ describe MockUrlReferenceable do
         expect(subject).to receive(:id)
         subject.url
       end
+
+      it 'returns the joining of the parent URL and ID with a slash' do
+        allow(subject).to receive(:parent_url).and_return('dog/goes')
+
+        expect(subject.url).to eq('dog/goes/id')
+      end
     end
   end
 
