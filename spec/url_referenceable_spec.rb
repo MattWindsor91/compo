@@ -30,7 +30,7 @@ describe MockUrlReferenceable do
       specify { expect(subject.parent_url).to be_nil }
 
       it 'calls #parent' do
-        expect(subject).to receive(:parent).once
+        expect(subject).to receive(:parent)
         subject.parent_url
       end
     end
@@ -43,7 +43,7 @@ describe MockUrlReferenceable do
       end
 
       it 'calls #parent' do
-        expect(subject).to receive(:parent).once.with(no_args)
+        expect(subject).to receive(:parent).with(no_args)
         subject.parent_url
       end
 
