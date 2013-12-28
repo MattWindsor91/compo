@@ -26,7 +26,27 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Compo consists of several classes and mixins that implement various parts of the composite pattern.  In increasing order of general usefulness, they are:
+
+### Base mixins
+
+- **Composite**, which specifies the #add/#remove/#remove_id/#get_child API on top of an implementation;
+- **Movable**, which creates a #move_to method that simplifies the act of moving a child between Composites;
+- **ParentTracker**, which implements keeping track of a child's parent and the child end of #add/#remove;
+
+### Composite implementation classes
+
+These implement the methods needed for **Composite** to work, but don't implement moving, parent tracking, or anything else.
+
+- **ArrayComposite**, which is a class that implements **Composite** using an Array, with IDs being the array indices;
+- **HashComposite**, which is a class that implements **Composite** using a Hash, with IDs being the hash keys;
+- **NullComposite**, which allows no children but implements **Composite** in a way such that all operations fail;
+
+### Simple leaf and node classes
+
+These include **Composite**, **Movable** and **ParentTracker**, and thus can be moved around, added to and removed from composites, and track their current parents and IDs.
+
+- **Leaf**, which is based on NullComposite and is intended for objects that don't have children but can be placed in other Composites.
 
 ## Contributing
 
