@@ -5,7 +5,7 @@ module Compo
     end
 
     def parent_url
-      parent
+      parent.url unless parent.nil?
       nil
     end
   end
