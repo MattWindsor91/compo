@@ -28,10 +28,18 @@ describe MockUrlReferenceable do
       let(:parent) { nil }
 
       specify { expect(subject.parent_url).to be_nil }
+
+      it 'calls #parent' do
+        expect(subject).to receive(:parent).once
+      end
     end
 
     context 'when the UrlReferenceable has a parent' do
       let(:parent) { double(:parent) }
+
+      it 'calls #parent' do
+        expect(subject).to receive(:parent).once
+      end
     end
   end
 end
