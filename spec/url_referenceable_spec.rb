@@ -39,12 +39,12 @@ describe MockUrlReferenceable do
       let(:parent) { double(:parent) }
 
       it 'calls #parent' do
-        expect(subject).to receive(:parent).once
+        expect(subject).to receive(:parent).once.with(no_args)
         subject.parent_url
       end
 
       it 'calls #url on the parent' do
-        expect(parent).to receive(:url).once
+        expect(parent).to receive(:url).once.with(no_args)
         subject.parent_url
       end
     end
