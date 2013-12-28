@@ -12,6 +12,10 @@ describe MockUrlReferenceable do
   describe '#url' do
     context 'when the UrlReferenceable has no parent' do
       let(:parent) { nil }
+
+      it 'returns the empty string' do
+        expect(subject.url).to eq('')
+      end
     end
 
     context 'when the UrlReferenceable has a parent' do
