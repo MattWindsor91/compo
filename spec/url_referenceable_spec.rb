@@ -20,7 +20,10 @@ describe MockUrlReferenceable do
 
     context 'when the UrlReferenceable has a parent' do
       let(:parent) { double(:parent) }
-      before(:each) { allow(subject).to receive(:id).and_return('id') }
+      before(:each) do
+        allow(subject).to receive(:id).and_return('id')
+        allow(subject).to receive(:parent_url).and_return('dog/goes')
+      end
 
       it 'calls #id' do
         expect(subject).to receive(:id)
@@ -28,7 +31,6 @@ describe MockUrlReferenceable do
       end
 
       it 'returns the joining of the parent URL and ID with a slash' do
-        allow(subject).to receive(:parent_url).and_return('dog/goes')
 
         expect(subject.url).to eq('dog/goes/id')
       end
