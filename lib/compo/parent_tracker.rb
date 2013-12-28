@@ -58,7 +58,7 @@ module Compo
     #
     # @return [void]
     def remove_parent
-      update_parent(nil, ->{ nil })
+      update_parent(nil, -> { nil })
     end
   end
 end
