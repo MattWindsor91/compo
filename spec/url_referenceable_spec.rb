@@ -20,6 +20,12 @@ describe MockUrlReferenceable do
 
     context 'when the UrlReferenceable has a parent' do
       let(:parent) { double(:parent) }
+      before(:each) { allow(subject).to receive(:id).and_return('id') }
+
+      it 'calls #id' do
+        expect(subject).to receive(:id)
+        subject.url
+      end
     end
   end
 
