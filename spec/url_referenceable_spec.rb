@@ -42,6 +42,11 @@ describe MockUrlReferenceable do
         expect(subject).to receive(:parent).once
         subject.parent_url
       end
+
+      it 'calls #url on the parent' do
+        expect(parent).to receive(:url).once
+        subject.parent_url
+      end
     end
   end
 end
