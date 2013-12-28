@@ -11,6 +11,7 @@ module Compo
   class Leaf < NullComposite
     include Movable
     include ParentTracker
+    include UrlReferenceable
 
     # Initialises the Leaf
     #
