@@ -39,7 +39,6 @@ describe MockUrlReferenceable do
       let(:parent) { double(:parent) }
 
       before(:each) do
-        allow(subject).to receive(:parent)
         allow(parent).to receive(:url)
       end
 
