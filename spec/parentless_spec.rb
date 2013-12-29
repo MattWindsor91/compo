@@ -30,7 +30,7 @@ describe Compo::Parentless do
 
   describe '#parent' do
     it 'returns the exact same Parentless object' do
-      specify { expect(subject.parent).to be(subject) }
+      expect(subject.parent).to be(subject)
     end
   end
 end
