@@ -1,5 +1,21 @@
 require 'compo'
 
+shared_examples 'a removal of a child from its parent' do
+  it 'calls #update_parent on the child with a Parentless' do
+    expect(child).to receive(:update_parent).once do |parent, _|
+      expect(parent).to be_a(Compo::Parentless)
+    end
+    op.call
+  end
+
+  it 'calls #update_parent on the child with a nil-returning ID proc' do
+    expect(child).to receive(:update_parent).once do |_, idp|
+      expect(idp.call).to be_nil
+    end
+    op.call
+  end
+end
+
 shared_examples 'a composite' do
   let(:id) { double(:id) }
   let(:child) { double(:child) }
@@ -169,18 +185,8 @@ shared_examples 'a composite with default #remove!' do
           subject.remove(child)
         end
 
-        it 'calls #update_parent on the child with a Parentless' do
-          expect(child).to receive(:update_parent).once do |parent, _|
-            expect(parent).to be_a(Compo::Parentless)
-          end
-          subject.remove(child)
-        end
-
-        it 'calls #update_parent on the child with a nil-returning ID proc' do
-          expect(child).to receive(:update_parent).once do |_, idp|
-            expect(idp.call).to be_nil
-          end
-          subject.remove(child)
+        it_behaves_like 'a removal of a child from its parent' do
+          let(:op) { -> { subject.remove(child) } }
         end
 
         it 'returns the given child' do
@@ -225,18 +231,8 @@ shared_examples 'a composite with default #remove_id!' do
           subject.remove_id(id)
         end
 
-        it 'calls #update_parent on the child with a Parentless' do
-          expect(child).to receive(:update_parent).once do |parent, _|
-            expect(parent).to be_a(Compo::Parentless)
-          end
-          subject.remove_id(id)
-        end
-
-        it 'calls #update_parent on the child with a nil-returning ID proc' do
-          expect(child).to receive(:update_parent).once do |_, idp|
-            expect(idp.call).to be_nil
-          end
-          subject.remove_id(id)
+        it_behaves_like 'a removal of a child from its parent' do
+          let(:op) { -> { subject.remove_id(id) } }
         end
 
         it 'returns the child' do
@@ -284,18 +280,8 @@ shared_examples 'a composite with default #remove_id!' do
           subject.remove_id(id)
         end
 
-        it 'calls #update_parent on the child with a Parentless' do
-          expect(child).to receive(:update_parent).once do |parent, _|
-            expect(parent).to be_a(Compo::Parentless)
-          end
-          subject.remove_id(id)
-        end
-
-        it 'calls #update_parent on the child with a nil-returning ID proc' do
-          expect(child).to receive(:update_parent).once do |_, idp|
-            expect(idp.call).to be_nil
-          end
-          subject.remove_id(id)
+        it_behaves_like 'a removal of a child from its parent' do
+          let(:op) { -> { subject.remove_id(id) } }
         end
 
         it 'returns the given child' do
