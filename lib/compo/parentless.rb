@@ -4,7 +4,8 @@ module Compo
   class Parentless
     include Composite
 
-    def add!(_, child)
+    def add(_, child)
+      child.remove_parent
       child
     end
 
