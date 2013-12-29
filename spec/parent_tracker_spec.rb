@@ -52,7 +52,7 @@ describe MockParentTracker do
   describe '#remove_parent' do
     it 'sets the parent to an instance of Parentless' do
       subject.remove_parent
-      expect(subject.parent.class).to eq(Compo::Parentless)
+      expect(subject.parent).to be_a(Compo::Parentless)
     end
 
     it 'sets the ID function to one returning nil' do
