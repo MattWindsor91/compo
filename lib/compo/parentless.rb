@@ -8,15 +8,6 @@ module Compo
   class Parentless
     include Composite
 
-    # 'Adds' a child to this Parentless
-    #
-    # This always succeeds.
-    #
-    # @return [Object]  The child.
-    def add!(_, child)
-      child
-    end
-
     # 'Removes' a child from this Parentless
     #
     # This always succeeds, and never triggers any other action.
@@ -38,6 +29,17 @@ module Compo
 
     def parent
       self
+    end
+
+    protected
+
+    # 'Adds' a child to this Parentless
+    #
+    # This always succeeds.
+    #
+    # @return [Object]  The child.
+    def add!(_, child)
+      child
     end
 
     def id_function(_)
