@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'compo'
-require 'array_composite_spec'
+require 'array_composite_shared_examples'
 
 describe Compo::ArrayBranch do
   describe '#initialize' do
