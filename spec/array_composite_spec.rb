@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'compo'
 
-describe Compo::ArrayComposite do
+shared_examples 'an array composite' do
   let(:child1) { double(:child1) }
   let(:child2) { double(:child2) }
   let(:child3) { double(:child3) }
@@ -235,4 +235,8 @@ describe Compo::ArrayComposite do
       end
     end
   end
+end
+
+describe Compo::ArrayComposite do
+  it_behaves_like 'an array composite'
 end
