@@ -20,18 +20,25 @@ end
 
 shared_examples 'an addition to the new parent' do
   it 'calls #add on the new parent with the ID and Movable' do
+    expect(to).to_not be_nil
     expect(to).to receive(:add).once.with(:test, subject)
     subject.move_to(to, :test)
   end
 end
 
 shared_examples 'a movable object' do
-  let(:old_parent) { double(:old_parent) }
-  let(:new_parent) { double(:new_parent) }
+  let(:old_parent)    { double(:old_parent) }
+  let(:new_parent)    { double(:new_parent) }
+  let(:remove_result) { subject }
+  let(:add_result)    { subject }
 
   before(:each) do
     allow(subject).to receive(:parent).and_return(old_parent)
-    allow(old_parent).to receive(:remove)
+    allow(old_parent).to receive(:remove).and_return(remove_result)
+
+    unless new_parent.nil?
+      allow(new_parent).to receive(:add).and_return(add_result)
+    end
   end
 
   describe '#move_to' do
@@ -59,14 +66,10 @@ shared_examples 'a movable object' do
     end
 
     context 'when the receiving parent refuses to add the Movable' do
-      before(:each) do
-        allow(new_parent).to receive(:add).and_return(nil)
-      end
+      let(:add_result) { nil }
 
       context 'and the Movable has no parent' do
-        before(:each) do
-          allow(subject).to receive(:parent).and_return(Compo::Parentless.new)
-        end
+        let(:old_parent) { Compo::Parentless.new }
 
         it_behaves_like 'a normal call to #move_to' do
           let(:to) { new_parent }
@@ -78,10 +81,7 @@ shared_examples 'a movable object' do
       end
 
       context 'and the Movable has a parent that refuses to remove it' do
-        before(:each) do
-          allow(subject).to receive(:parent).and_return(old_parent)
-          allow(old_parent).to receive(:remove).and_return(nil)
-        end
+        let(:remove_result) { nil }
 
         it_behaves_like 'a normal call to #move_to' do
           let(:to) { new_parent }
@@ -94,12 +94,6 @@ shared_examples 'a movable object' do
       end
 
       context 'and the Movable has a parent that allows it to be removed' do
-        before(:each) do
-          allow(subject).to receive(:parent).and_return(old_parent)
-          allow(old_parent).to receive(:remove).and_return(subject)
-          allow(new_parent).to receive(:add)
-        end
-
         it_behaves_like 'a normal call to #move_to' do
           let(:to) { new_parent }
         end
@@ -116,31 +110,20 @@ shared_examples 'a movable object' do
     end
 
     context 'when the receiving parent allows the Movable to be added' do
-      before(:each) do
-        allow(new_parent).to receive(:add).and_return(subject)
-      end
-
       context 'and the Movable has no parent' do
-        before(:each) do
-          allow(subject).to receive(:parent).and_return(Compo::Parentless.new)
-        end
+        let(:old_parent) { Compo::Parentless.new }
 
         it_behaves_like 'a normal call to #move_to' do
           let(:to) { new_parent }
         end
 
-        it 'calls #add on the new parent with the ID and Movable' do
-          expect(new_parent).to receive(:add).with(:test_id, subject)
-
-          subject.move_to(new_parent, :test_id)
+        it_behaves_like 'an addition to the new parent' do
+          let(:to) { new_parent }
         end
       end
 
       context 'and the Movable has a parent that refuses to remove it' do
-        before(:each) do
-          allow(subject).to receive(:parent).and_return(old_parent)
-          allow(old_parent).to receive(:remove).and_return(nil)
-        end
+        let(:remove_result) { nil }
 
         it_behaves_like 'a normal call to #move_to' do
           let(:to) { new_parent }
@@ -153,12 +136,6 @@ shared_examples 'a movable object' do
       end
 
       context 'and the Movable has a parent that allows it to be removed' do
-        before(:each) do
-          allow(subject).to receive(:parent).and_return(old_parent)
-          allow(old_parent).to receive(:remove).and_return(subject)
-          allow(new_parent).to receive(:add)
-        end
-
         it_behaves_like 'a normal call to #move_to' do
           let(:to) { new_parent }
         end
