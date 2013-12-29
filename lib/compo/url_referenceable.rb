@@ -31,7 +31,7 @@ module Compo
     end
 
     def child_url(child_id)
-      [url, id].join('/')
+      [url, child_id].join('/')
     end
 
     # Returns the URL of this object's parent
