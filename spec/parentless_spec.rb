@@ -4,9 +4,18 @@ require 'compo'
 describe Compo::Parentless do
   let(:child) { double(:child) }
 
-  describe '#add!' do
+  describe '#add' do
+    before(:each) do
+      allow(child).to receive(:remove_parent)
+    end
+
     it 'returns the given child exactly' do
-      expect(subject.add!(:id, child)).to be(child)
+      expect(subject.add(:id, child)).to be(child)
+    end
+
+    it 'sends #remove_parent to the given child' do
+      expect(child).to receive(:remove_parent).with(no_args)
+      subject.add(:id, child)
     end
   end
 
