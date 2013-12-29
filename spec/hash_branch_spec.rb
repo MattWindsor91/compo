@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'compo'
-require 'hash_composite_spec'
+require 'hash_composite_shared_examples'
 
 describe Compo::HashBranch do
   describe '#initialize' do
