@@ -14,7 +14,7 @@ describe MockMovable do
     context 'when the receiving parent is nil' do
       context 'and the Movable has no parent' do
         before(:each) do
-          allow(subject).to receive(:parent).and_return(nil)
+          allow(subject).to receive(:parent).and_return(Compo::Parentless.new)
         end
 
         it 'returns itself' do
@@ -56,7 +56,7 @@ describe MockMovable do
 
       context 'and the Movable has no parent' do
         before(:each) do
-          allow(subject).to receive(:parent).and_return(nil)
+          allow(subject).to receive(:parent).and_return(Compo::Parentless.new)
         end
 
         it 'returns itself' do
@@ -130,7 +130,7 @@ describe MockMovable do
 
       context 'and the Movable has no parent' do
         before(:each) do
-          allow(subject).to receive(:parent).and_return(nil)
+          allow(subject).to receive(:parent).and_return(Compo::Parentless.new)
         end
 
         it 'returns itself' do

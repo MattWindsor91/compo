@@ -116,7 +116,7 @@ module Compo
     #
     # @return [void]
     def remove_parent_of(child)
-      child.remove_parent unless child.nil?
+      Parentless.new.add(nil, child)
     end
 
     # Default implementation of #remove! in terms of #remove_id!

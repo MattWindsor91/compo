@@ -10,9 +10,9 @@ describe Compo::Parentless do
     end
   end
 
-  describe '#remove!' do
+  describe '#remove' do
     it 'returns the given child exactly' do
-      expect(subject.remove!(child)).to be(child)
+      expect(subject.remove(child)).to be(child)
     end
   end
 

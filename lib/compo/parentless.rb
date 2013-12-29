@@ -8,7 +8,7 @@ module Compo
       child
     end
 
-    def remove!(child)
+    def remove(child)
       child
     end
 
@@ -26,6 +26,10 @@ module Compo
 
     def parent
       self
+    end
+
+    def id_function(_)
+      -> { nil }
     end
   end
 end
