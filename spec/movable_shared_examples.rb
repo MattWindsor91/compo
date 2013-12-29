@@ -29,30 +29,30 @@ shared_examples 'a movable object' do
   let(:old_parent) { double(:old_parent) }
   let(:new_parent) { double(:new_parent) }
 
+  before(:each) do
+    allow(subject).to receive(:parent).and_return(old_parent)
+    allow(old_parent).to receive(:remove)
+  end
+
   describe '#move_to' do
     context 'when the receiving parent is nil' do
+      let(:new_parent) { nil }
+
       context 'and the Movable has no parent' do
-        before(:each) do
-          allow(subject).to receive(:parent).and_return(Compo::Parentless.new)
-        end
+        let(:old_parent) { Compo::Parentless.new }
 
         it_behaves_like 'a normal call to #move_to' do
-          let(:to) { nil }
+          let(:to) { new_parent }
         end
       end
 
       context 'and the Movable has a parent' do
-        before(:each) do
-          allow(subject).to receive(:parent).and_return(old_parent)
-          allow(old_parent).to receive(:remove)
-        end
-
         it_behaves_like 'a normal call to #move_to' do
-          let(:to) { nil }
+          let(:to) { new_parent }
         end
 
         it_behaves_like 'a removal from the old parent' do
-          let(:to) { nil }
+          let(:to) { new_parent }
           let(:from) { old_parent }
         end
       end
