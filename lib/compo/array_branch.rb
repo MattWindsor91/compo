@@ -11,6 +11,7 @@ module Compo
   class ArrayBranch < ArrayComposite
     include Movable
     include ParentTracker
+    include UrlReferenceable
 
     # Initialises the ArrayBranch
     #

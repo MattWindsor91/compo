@@ -1,3 +1,10 @@
+0.1.4 (2013-12-28)
+  - Implement UrlReferenceable.  This adds two new functions, #url and
+    #parent_url, which retrieve a slash/delimited/string/of/IDs starting from
+    the first child in the parent chain from the caller and its parent
+    respectively.
+  - Include UrlReferenceable in ArrayBranch, HashBranch and Leaf.
+
 0.1.3 (2013-12-28)
   - Implement ArrayBranch and HashBranch.  These bundle ArrayComposite and
     HashComposite up with the Movable and ParentTracker mixins, for

@@ -12,6 +12,7 @@ module Compo
   class HashBranch < HashComposite
     include Movable
     include ParentTracker
+    include UrlReferenceable
 
     # Initialises the HashBranch
     #
