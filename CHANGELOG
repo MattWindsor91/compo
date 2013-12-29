@@ -1,3 +1,11 @@
+0.2.0 (2013-12-29)
+  - (BACKWARDS INCOMPATIBILITY) Implement Parentless as a null object for the
+    result of calling #parent on a parentless child.  This case now returns
+    an instance of Parentless, not nil.
+  - #remove_child no longer exists, as Parentless calls #update_child with
+    itself when a parent removes a child.
+  - Numerous test improvements; now using shared examples.
+
 0.1.5 (2013-12-29)
   - Add a missing require 'forwardable', and remove one that wasn't needed.
 
