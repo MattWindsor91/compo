@@ -1,3 +1,6 @@
+0.1.5 (2013-12-29)
+  - Add a missing require 'forwardable', and remove one that wasn't needed.
+
 0.1.4 (2013-12-28)
   - Implement UrlReferenceable.  This adds two new functions, #url and
     #parent_url, which retrieve a slash/delimited/string/of/IDs starting from

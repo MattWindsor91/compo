@@ -1,3 +1,5 @@
+require 'forwardable'
+
 module Compo
   # Mixin for objects that can contain other objects
   #
