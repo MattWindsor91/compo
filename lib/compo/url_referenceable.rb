@@ -30,6 +30,21 @@ module Compo
       parent.child_url(id)
     end
 
+    # Returns the URL of a child of this object, with the given ID
+    #
+    # This defaults to joining the ID to this object's URL with a slash.
+    #
+    # @api  public
+    # @example  Gets the URL of the child of an object without a parent.
+    #   orphan.child_url(:id)
+    #   #=> '/id'
+    # @example  Gets the URL of the child of an object with a parent.
+    #   leaf.child_url(:id)
+    #   #=> 'grandparent_id/parent_id/id'
+    #
+    # @param child_id [Object]  The ID of the child whose URL is sought.
+    #
+    # @return [String]  The URL of the child with the given ID.
     def child_url(child_id)
       [url, child_id].join('/')
     end
