@@ -22,7 +22,7 @@ describe MockMovable do
         end
 
         it 'calls #parent' do
-          expect(subject).to receive(:parent).once
+          expect(subject).to receive(:parent)
           subject.move_to(nil, :test)
         end
       end
