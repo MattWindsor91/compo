@@ -15,5 +15,9 @@ module Compo
     def url
       ''
     end
+
+    def child_url(_)
+      ''
+    end
   end
 end
