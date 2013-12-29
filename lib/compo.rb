@@ -8,6 +8,7 @@ require 'compo/url_referenceable'
 require 'compo/array_composite'
 require 'compo/hash_composite'
 require 'compo/null_composite'
+require 'compo/parentless'
 
 # Leaf and branch classes
 require 'compo/array_branch'

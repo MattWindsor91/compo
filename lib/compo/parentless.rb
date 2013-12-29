@@ -1,0 +1,112 @@
+require 'compo'
+
+module Compo
+  # A Composite that represents the non-existent parent of an orphan
+  #
+  # Parentless is the parent assigned when an object is removed from a
+  # Composite, and should be the default parent of an object that can be
+  # added to one.  It exists to make some operations easier, such as URL
+  # creation.
+  class Parentless
+    include Composite
+
+    # 'Removes' a child from this Parentless
+    #
+    # This always succeeds, and never triggers any other action.
+    #
+    # @api  public
+    # @example  'Removes' a child.
+    #   parentless.remove(child)
+    #
+    # @param child [Object]  The child to 'remove' from this Parentless.
+    #
+    # @return [Object]  The child.
+    def remove(child)
+      child
+    end
+
+    # Returns the empty hash
+    #
+    # @api  public
+    # @example  Gets the children
+    #   parentless.children
+    #   #=> {}
+    #
+    # @return [Hash]  The empty hash.
+    def children
+      {}
+    end
+
+    # Returns the URL of this Parentless
+    #
+    # This is always the empty string.
+    #
+    # @api  public
+    # @example  Gets the URL of a Parentless
+    #   parentless.url
+    #   #=> ''
+    #
+    # @return [Hash]  The empty string.
+    def url
+      ''
+    end
+
+    # Given the ID of a child in this Parentless, returns that child's URL
+    #
+    # This is always the empty string.  This is so that children of orphan
+    # objects have URLs starting with /their_id.
+    #
+    # @api  public
+    # @example  Gets the URL of the child of a Parentless.
+    #   parentless.child_url(:child_id)
+    #   #=> ''
+    #
+    # @return [Hash]  The empty string.
+    def child_url(_)
+      ''
+    end
+
+    # Returns the parent of this Parentless
+    #
+    # This is always the same Parentless, for convenience's sake.  Technically,
+    # as a null object, Parentless has no parent.
+    #
+    # @api public
+    # @example  Gets the 'parent' of a Parentless.
+    #   parentless.parent
+    #
+    # @return [self]
+    def parent
+      self
+    end
+
+    protected
+
+    # 'Adds' a child to this Parentless
+    #
+    # This always succeeds.
+    #
+    # @api private
+    #
+    # @param id [Object]  Ignored.
+    # @param child [Object]  The object to 'add' to this Parentless.
+    #
+    # @return [Object]  The child.
+    def add!(_, child)
+      child
+    end
+
+    # Creates an ID function for the given child
+    #
+    # The returned proc is O(1), and always returns nil.
+    #
+    # @api  private
+    #
+    # @param child [Object]  The child whose ID is to be returned by the proc.
+    #
+    # @return [Proc]  A proc returning nil.
+    def id_function(_)
+      -> { nil }
+    end
+  end
+end
