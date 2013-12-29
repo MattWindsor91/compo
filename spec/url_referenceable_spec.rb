@@ -7,22 +7,23 @@ class MockUrlReferenceable
 end
 
 describe MockUrlReferenceable do
-  before(:each) { allow(subject).to receive(:parent).and_return(parent) }
+  let(:parent) { nil }
+  let(:id) { double(:id) }
+
+  before(:each) do
+    allow(subject).to receive(:id).and_return(id)
+    allow(subject).to receive(:parent).and_return(parent)
+  end
 
   describe '#url' do
     context 'when the UrlReferenceable has no parent' do
-      let(:parent) { nil }
-
-      it 'returns the empty string' do
-        expect(subject.url).to eq('')
-      end
+      specify { expect { subject.url }.to raise_error }
     end
 
     context 'when the UrlReferenceable has a parent' do
       let(:parent) { double(:parent) }
       before(:each) do
-        allow(subject).to receive(:id).and_return('id')
-        allow(subject).to receive(:parent_url).and_return('dog/goes')
+        allow(parent).to receive(:child_url).and_return(:child_url)
       end
 
       it 'calls #id' do
@@ -30,8 +31,18 @@ describe MockUrlReferenceable do
         subject.url
       end
 
-      it 'returns the joining of the parent URL and ID with a slash' do
-        expect(subject.url).to eq('dog/goes/id')
+      it 'calls #parent' do
+        expect(subject).to receive(:parent)
+        subject.url
+      end
+
+      it 'calls #child_url on the parent with the ID' do
+        expect(parent).to receive(:child_url).with(id)
+        subject.url
+      end
+
+      it 'returns the result of calling #child_url' do
+        expect(subject.url).to eq(:child_url)
       end
     end
   end
