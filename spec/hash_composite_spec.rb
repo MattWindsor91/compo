@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'compo'
 
-describe Compo::HashComposite do
+shared_examples 'a hash composite' do
   let(:child1) { double(:child1) }
   let(:child2) { double(:child2) }
   let(:child3) { double(:child3) }
@@ -203,4 +203,8 @@ describe Compo::HashComposite do
       end
     end
   end
+end
+
+describe Compo::HashComposite do
+  it_behaves_like 'a hash composite'
 end
