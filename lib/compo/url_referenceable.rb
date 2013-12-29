@@ -27,7 +27,11 @@ module Compo
     #
     # @return [String]  The URL of this object.
     def url
-      parent.nil? ? '' : [parent_url, id].join('/')
+      parent.child_url(id)
+    end
+
+    def child_url(child_id)
+      [url, id].join('/')
     end
 
     # Returns the URL of this object's parent
