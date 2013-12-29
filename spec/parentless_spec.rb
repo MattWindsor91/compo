@@ -2,6 +2,10 @@ require 'spec_helper'
 require 'compo'
 
 describe Compo::Parentless do
+  describe '#children' do
+    specify { expect(subject.children).to eq({}) }
+  end
+
   describe '#url' do
     specify { expect(subject.url).to eq('') }
   end
