@@ -8,13 +8,8 @@ describe Compo::HashComposite do
 
   before(:each) do
     allow(child1).to receive(:update_parent)
-    allow(child1).to receive(:remove_parent)
-
     allow(child2).to receive(:update_parent)
-    allow(child2).to receive(:remove_parent)
-
     allow(child3).to receive(:update_parent)
-    allow(child3).to receive(:remove_parent)
   end
 
   describe '#add' do
@@ -39,8 +34,17 @@ describe Compo::HashComposite do
         subject.add(:a, child2)
       end
 
-      it 'calls #remove_parent on the old child' do
-        expect(child1).to receive(:remove_parent).once.with(no_args)
+      it 'calls #update_parent on the old child with a Parentless' do
+        expect(child1).to receive(:update_parent).once do |parent, _|
+          expect(parent).to be_a(Compo::Parentless)
+        end
+        subject.add(:a, child2)
+      end
+
+      it 'calls #update_parent on the old child with nil-returning ID proc' do
+        expect(child1).to receive(:update_parent).once do |_, idp|
+          expect(idp.call).to be_nil
+        end
         subject.add(:a, child2)
       end
     end
@@ -83,8 +87,17 @@ describe Compo::HashComposite do
         expect(subject.remove(child1)).to eq(child1)
       end
 
-      it 'calls #remove_parent on the child' do
-        expect(child1).to receive(:remove_parent).once.with(no_args)
+      it 'calls #update_parent on the child with a Parentless' do
+        expect(child1).to receive(:update_parent).once do |parent, _|
+          expect(parent).to be_a(Compo::Parentless)
+        end
+        subject.remove(child1)
+      end
+
+      it 'calls #update_parent on the child with a nil-returning ID proc' do
+        expect(child1).to receive(:update_parent).once do |_, idp|
+          expect(idp.call).to be_nil
+        end
         subject.remove(child1)
       end
 
@@ -122,8 +135,17 @@ describe Compo::HashComposite do
         expect(subject.remove_id(:a)).to eq(child1)
       end
 
-      it 'calls #remove_parent on the child' do
-        expect(child1).to receive(:remove_parent).once.with(no_args)
+      it 'calls #update_parent on the child with a Parentless' do
+        expect(child1).to receive(:update_parent).once do |parent, _|
+          expect(parent).to be_a(Compo::Parentless)
+        end
+        subject.remove_id(:a)
+      end
+
+      it 'calls #update_parent on the child with a nil-returning ID proc' do
+        expect(child1).to receive(:update_parent).once do |_, idp|
+          expect(idp.call).to be_nil
+        end
         subject.remove_id(:a)
       end
 

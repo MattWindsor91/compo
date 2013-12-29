@@ -1,4 +1,5 @@
 require 'forwardable'
+require 'compo/parentless'
 
 module Compo
   # Basic implementation of parent tracking as a mixin
@@ -58,7 +59,7 @@ module Compo
     #
     # @return [void]
     def remove_parent
-      update_parent(nil, -> { nil })
+      update_parent(Parentless.new, -> { nil })
     end
   end
 end

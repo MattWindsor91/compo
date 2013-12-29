@@ -3,8 +3,8 @@ require 'compo'
 
 describe Compo::Leaf do
   describe '#initialize' do
-    it 'initialises with no parent' do
-      expect(subject.parent).to be_nil
+    it 'initialises with a Parentless as parent' do
+      expect(subject.parent).to be_a(Compo::Parentless)
     end
 
     it 'initialises with an ID function returning nil' do

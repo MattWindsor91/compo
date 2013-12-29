@@ -72,7 +72,7 @@ describe MockComposite do
       context 'when #remove! returns the child' do
         before(:each) do
           allow(subject).to receive(:remove!).and_return(child)
-          allow(child).to receive(:remove_parent)
+          allow(child).to receive(:update_parent)
         end
 
         it 'calls #remove! with the child given' do
@@ -80,8 +80,17 @@ describe MockComposite do
           subject.remove(child)
         end
 
-        it 'calls #remove_parent on the child with no arguments' do
-          expect(child).to receive(:remove_parent).once.with(no_args)
+        it 'calls #update_parent on the child with a Parentless' do
+          expect(child).to receive(:update_parent).once do |parent, _|
+            expect(parent).to be_a(Compo::Parentless)
+          end
+          subject.remove(child)
+        end
+
+        it 'calls #update_parent on the child with a nil-returning ID proc' do
+          expect(child).to receive(:update_parent).once do |_, idp|
+            expect(idp.call).to be_nil
+          end
           subject.remove(child)
         end
 
@@ -123,7 +132,7 @@ describe MockComposite do
       context 'when #remove_id! returns the child' do
         before(:each) do
           allow(subject).to receive(:remove_id!).and_return(child)
-          allow(child).to receive(:remove_parent)
+          allow(child).to receive(:update_parent)
         end
 
         it 'calls #remove_id! with the child given' do
@@ -131,8 +140,17 @@ describe MockComposite do
           subject.remove(child)
         end
 
-        it 'calls #remove_parent on the child with no arguments' do
-          expect(child).to receive(:remove_parent).once.with(no_args)
+        it 'calls #update_parent on the child with a Parentless' do
+          expect(child).to receive(:update_parent).once do |parent, _|
+            expect(parent).to be_a(Compo::Parentless)
+          end
+          subject.remove(child)
+        end
+
+        it 'calls #update_parent on the child with a nil-returning ID proc' do
+          expect(child).to receive(:update_parent).once do |_, idp|
+            expect(idp.call).to be_nil
+          end
           subject.remove(child)
         end
 
@@ -165,7 +183,7 @@ describe MockComposite do
       context 'and #remove_id! returns the child' do
         before(:each) do
           allow(subject).to receive(:remove_id!).and_return(child)
-          allow(child).to receive(:remove_parent)
+          allow(child).to receive(:update_parent)
         end
 
         it 'calls #remove_id! with the ID given' do
@@ -173,8 +191,17 @@ describe MockComposite do
           subject.remove_id(id)
         end
 
-        it 'calls #remove_parent on the child with no arguments' do
-          expect(child).to receive(:remove_parent).once.with(no_args)
+        it 'calls #update_parent on the child with a Parentless' do
+          expect(child).to receive(:update_parent).once do |parent, _|
+            expect(parent).to be_a(Compo::Parentless)
+          end
+          subject.remove_id(id)
+        end
+
+        it 'calls #update_parent on the child with a nil-returning ID proc' do
+          expect(child).to receive(:update_parent).once do |_, idp|
+            expect(idp.call).to be_nil
+          end
           subject.remove_id(id)
         end
 
@@ -215,7 +242,7 @@ describe MockComposite do
         before(:each) do
           allow(subject).to receive(:remove!).and_return(child)
           allow(subject).to receive(:get_child).and_return(child)
-          allow(child).to receive(:remove_parent)
+          allow(child).to receive(:update_parent)
         end
 
         it 'calls #remove! with the child given' do
@@ -223,8 +250,17 @@ describe MockComposite do
           subject.remove_id(id)
         end
 
-        it 'calls #remove_parent on the child with no arguments' do
-          expect(child).to receive(:remove_parent).once.with(no_args)
+        it 'calls #update_parent on the child with a Parentless' do
+          expect(child).to receive(:update_parent).once do |parent, _|
+            expect(parent).to be_a(Compo::Parentless)
+          end
+          subject.remove_id(id)
+        end
+
+        it 'calls #update_parent on the child with a nil-returning ID proc' do
+          expect(child).to receive(:update_parent).once do |_, idp|
+            expect(idp.call).to be_nil
+          end
           subject.remove_id(id)
         end
 
