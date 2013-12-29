@@ -13,7 +13,6 @@ describe MockComposite do
   let(:child) { double(:child) }
 
   it_behaves_like 'a composite'
-  it_behaves_like 'a composite with normal get_child behaviour'
   it_behaves_like 'a composite with default #remove!'
   it_behaves_like 'a composite with default #remove_id!'
 

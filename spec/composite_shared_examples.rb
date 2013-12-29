@@ -59,6 +59,24 @@ shared_examples 'a composite' do
       end
     end
   end
+
+  describe '#get_child' do
+    let(:child) { double(:child) }
+
+    before(:each) do
+      allow(subject).to receive(:children).and_return(in_children: child)
+    end
+
+    context 'when the argument is in #children' do
+      it 'returns the child' do
+        expect(subject.get_child(:in_children)).to eq(child)
+      end
+    end
+
+    context 'when the argument is not in #children' do
+      specify { expect(subject.get_child(:not_in_children)).to be_nil }
+    end
+  end
 end
 
 shared_examples 'a composite with default #remove!' do
@@ -284,24 +302,6 @@ shared_examples 'a composite with default #remove_id!' do
           expect(subject.remove_id(id)).to eq(child)
         end
       end
-    end
-  end
-end
-
-shared_examples 'a composite with normal get_child behaviour' do
-  describe '#get_child' do
-    let(:child) { double(:child) }
-
-    context 'when the argument is in #children' do
-      before(:each) {}
-
-      it 'returns the child' do
-        expect(subject.get_child(:in_children)).to eq(child)
-      end
-    end
-
-    context 'when the argument is not in #children' do
-      specify { expect(subject.get_child(:not_in_children)).to be_nil }
     end
   end
 end
