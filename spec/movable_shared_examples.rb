@@ -2,12 +2,26 @@ require 'compo'
 
 shared_examples 'a normal call to #move_to' do
   it 'returns itself' do
-    expect(subject.move_to(receiver, :test)).to eq(subject)
+    expect(subject.move_to(to, :test)).to eq(subject)
   end
 
   it 'calls #parent' do
     expect(subject).to receive(:parent)
-    subject.move_to(receiver, :test)
+    subject.move_to(to, :test)
+  end
+end
+
+shared_examples 'a removal from the old parent' do
+  it 'calls #remove on the old parent with the Movable' do
+    expect(from).to receive(:remove).once.with(subject)
+    subject.move_to(to, :test)
+  end
+end
+
+shared_examples 'an addition to the new parent' do
+  it 'calls #add on the new parent with the ID and Movable' do
+    expect(to).to receive(:add).once.with(:test, subject)
+    subject.move_to(to, :test)
   end
 end
 
@@ -23,7 +37,7 @@ shared_examples 'a movable object' do
         end
 
         it_behaves_like 'a normal call to #move_to' do
-          let(:receiver) { nil }
+          let(:to) { nil }
         end
       end
 
@@ -34,12 +48,12 @@ shared_examples 'a movable object' do
         end
 
         it_behaves_like 'a normal call to #move_to' do
-          let(:receiver) { nil }
+          let(:to) { nil }
         end
 
-        it 'calls #remove on the old parent with the Movable' do
-          expect(old_parent).to receive(:remove).once.with(subject)
-          subject.move_to(nil, :test)
+        it_behaves_like 'a removal from the old parent' do
+          let(:to) { nil }
+          let(:from) { old_parent }
         end
       end
     end
@@ -55,12 +69,11 @@ shared_examples 'a movable object' do
         end
 
         it_behaves_like 'a normal call to #move_to' do
-          let(:receiver) { new_parent }
+          let(:to) { new_parent }
         end
 
-        it 'calls #add on the new parent with the ID and Movable' do
-          expect(new_parent).to receive(:add).once.with(:test, subject)
-          subject.move_to(new_parent, :test)
+        it_behaves_like 'an addition to the new parent' do
+          let(:to) { new_parent }
         end
       end
 
@@ -71,12 +84,12 @@ shared_examples 'a movable object' do
         end
 
         it_behaves_like 'a normal call to #move_to' do
-          let(:receiver) { new_parent }
+          let(:to) { new_parent }
         end
 
-        it 'calls #remove on the old parent with the Movable' do
-          expect(old_parent).to receive(:remove).once.with(subject)
-          subject.move_to(new_parent, :test)
+        it_behaves_like 'a removal from the old parent' do
+          let(:to) { new_parent }
+          let(:from) { old_parent }
         end
       end
 
@@ -88,17 +101,16 @@ shared_examples 'a movable object' do
         end
 
         it_behaves_like 'a normal call to #move_to' do
-          let(:receiver) { new_parent }
+          let(:to) { new_parent }
         end
 
-        it 'calls #remove on the old parent with the Movable' do
-          expect(old_parent).to receive(:remove).once.with(subject)
-          subject.move_to(new_parent, :test)
+        it_behaves_like 'a removal from the old parent' do
+          let(:to) { new_parent }
+          let(:from) { old_parent }
         end
 
-        it 'calls #add on the new parent with the ID and Movable' do
-          expect(new_parent).to receive(:add).once.with(:test, subject)
-          subject.move_to(new_parent, :test)
+        it_behaves_like 'an addition to the new parent' do
+          let(:to) { new_parent }
         end
       end
     end
@@ -114,7 +126,7 @@ shared_examples 'a movable object' do
         end
 
         it_behaves_like 'a normal call to #move_to' do
-          let(:receiver) { new_parent }
+          let(:to) { new_parent }
         end
 
         it 'calls #add on the new parent with the ID and Movable' do
@@ -131,12 +143,12 @@ shared_examples 'a movable object' do
         end
 
         it_behaves_like 'a normal call to #move_to' do
-          let(:receiver) { new_parent }
+          let(:to) { new_parent }
         end
 
-        it 'calls #remove on the old parent with the Movable' do
-          expect(old_parent).to receive(:remove).once.with(subject)
-          subject.move_to(new_parent, :test)
+        it_behaves_like 'a removal from the old parent' do
+          let(:to) { new_parent }
+          let(:from) { old_parent }
         end
       end
 
@@ -148,17 +160,16 @@ shared_examples 'a movable object' do
         end
 
         it_behaves_like 'a normal call to #move_to' do
-          let(:receiver) { new_parent }
+          let(:to) { new_parent }
         end
 
-        it 'calls #remove on the old parent with the Movable' do
-          expect(old_parent).to receive(:remove).once.with(subject)
-          subject.move_to(new_parent, :test)
+        it_behaves_like 'a removal from the old parent' do
+          let(:to) { new_parent }
+          let(:from) { old_parent }
         end
 
-        it 'calls #add on the new parent with the ID and Movable' do
-          expect(new_parent).to receive(:add).once.with(:test, subject)
-          subject.move_to(new_parent, :test)
+        it_behaves_like 'an addition to the new parent' do
+          let(:to) { new_parent }
         end
       end
     end
