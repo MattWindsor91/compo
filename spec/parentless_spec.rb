@@ -27,4 +27,10 @@ describe Compo::Parentless do
   describe '#child_url' do
     specify { expect(subject.child_url(:id)).to eq('') }
   end
+
+  describe '#parent' do
+    it 'returns the exact same Parentless object' do
+      specify { expect(subject.parent).to be(subject) }
+    end
+  end
 end
