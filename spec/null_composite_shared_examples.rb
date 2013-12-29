@@ -1,4 +1,8 @@
+require 'composite_shared_examples'
+
 shared_examples 'a null composite' do
+  it_behaves_like 'a composite'
+
   let(:child1) { double(:child1) }
   let(:child2) { double(:child2) }
   let(:child3) { double(:child3) }
