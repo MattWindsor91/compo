@@ -1,14 +1,25 @@
 require 'compo'
 
 module Compo
+  # A Composite that represents the non-existent parent of an orphan
+  #
+  # Parentless is the parent assigned when an object is removed from a
+  # Composite, and
   class Parentless
     include Composite
 
-    def add(_, child)
-      child.remove_parent
+    # 'Adds' a child to this Parentless
+    #
+    # This always succeeds.
+    #
+    # @return [Object]  The child.
+    def add!(_, child)
       child
     end
 
+    # 'Removes' a child from this Parentless
+    #
+    # This always succeeds, and never triggers any other action.
     def remove(child)
       child
     end
