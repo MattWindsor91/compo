@@ -1,5 +1,16 @@
 require 'compo'
 
+shared_examples 'a normal call to #move_to' do
+  it 'returns itself' do
+    expect(subject.move_to(receiver, :test)).to eq(subject)
+  end
+
+  it 'calls #parent' do
+    expect(subject).to receive(:parent)
+    subject.move_to(receiver, :test)
+  end
+end
+
 shared_examples 'a movable object' do
   let(:old_parent) { double(:old_parent) }
   let(:new_parent) { double(:new_parent) }
@@ -11,13 +22,8 @@ shared_examples 'a movable object' do
           allow(subject).to receive(:parent).and_return(Compo::Parentless.new)
         end
 
-        it 'returns itself' do
-          expect(subject.move_to(nil, :test)).to eq(subject)
-        end
-
-        it 'calls #parent' do
-          expect(subject).to receive(:parent)
-          subject.move_to(nil, :test)
+        it_behaves_like 'a normal call to #move_to' do
+          let(:receiver) { nil }
         end
       end
 
@@ -27,13 +33,8 @@ shared_examples 'a movable object' do
           allow(old_parent).to receive(:remove)
         end
 
-        it 'returns itself' do
-          expect(subject.move_to(nil, :test)).to eq(subject)
-        end
-
-        it 'calls #parent' do
-          expect(subject).to receive(:parent)
-          subject.move_to(nil, :test)
+        it_behaves_like 'a normal call to #move_to' do
+          let(:receiver) { nil }
         end
 
         it 'calls #remove on the old parent with the Movable' do
@@ -53,13 +54,8 @@ shared_examples 'a movable object' do
           allow(subject).to receive(:parent).and_return(Compo::Parentless.new)
         end
 
-        it 'returns itself' do
-          expect(subject.move_to(new_parent, :test)).to eq(subject)
-        end
-
-        it 'calls #parent' do
-          expect(subject).to receive(:parent)
-          subject.move_to(new_parent, :test)
+        it_behaves_like 'a normal call to #move_to' do
+          let(:receiver) { new_parent }
         end
 
         it 'calls #add on the new parent with the ID and Movable' do
@@ -74,13 +70,8 @@ shared_examples 'a movable object' do
           allow(old_parent).to receive(:remove).and_return(nil)
         end
 
-        it 'returns itself' do
-          expect(subject.move_to(new_parent, :test)).to eq(subject)
-        end
-
-        it 'calls #parent' do
-          expect(subject).to receive(:parent)
-          subject.move_to(new_parent, :test)
+        it_behaves_like 'a normal call to #move_to' do
+          let(:receiver) { new_parent }
         end
 
         it 'calls #remove on the old parent with the Movable' do
@@ -96,13 +87,8 @@ shared_examples 'a movable object' do
           allow(new_parent).to receive(:add)
         end
 
-        it 'returns itself' do
-          expect(subject.move_to(new_parent, :test)).to eq(subject)
-        end
-
-        it 'calls #parent' do
-          expect(subject).to receive(:parent)
-          subject.move_to(new_parent, :test)
+        it_behaves_like 'a normal call to #move_to' do
+          let(:receiver) { new_parent }
         end
 
         it 'calls #remove on the old parent with the Movable' do
@@ -127,13 +113,8 @@ shared_examples 'a movable object' do
           allow(subject).to receive(:parent).and_return(Compo::Parentless.new)
         end
 
-        it 'returns itself' do
-          expect(subject.move_to(new_parent, :test)).to eq(subject)
-        end
-
-        it 'calls #parent' do
-          expect(subject).to receive(:parent)
-          subject.move_to(new_parent, :test)
+        it_behaves_like 'a normal call to #move_to' do
+          let(:receiver) { new_parent }
         end
 
         it 'calls #add on the new parent with the ID and Movable' do
@@ -149,13 +130,8 @@ shared_examples 'a movable object' do
           allow(old_parent).to receive(:remove).and_return(nil)
         end
 
-        it 'returns itself' do
-          expect(subject.move_to(new_parent, :test)).to eq(subject)
-        end
-
-        it 'calls #parent' do
-          expect(subject).to receive(:parent)
-          subject.move_to(new_parent, :test)
+        it_behaves_like 'a normal call to #move_to' do
+          let(:receiver) { new_parent }
         end
 
         it 'calls #remove on the old parent with the Movable' do
@@ -171,13 +147,8 @@ shared_examples 'a movable object' do
           allow(new_parent).to receive(:add)
         end
 
-        it 'returns itself' do
-          expect(subject.move_to(new_parent, :test)).to eq(subject)
-        end
-
-        it 'calls #parent' do
-          expect(subject).to receive(:parent)
-          subject.move_to(new_parent, :test)
+        it_behaves_like 'a normal call to #move_to' do
+          let(:receiver) { new_parent }
         end
 
         it 'calls #remove on the old parent with the Movable' do
