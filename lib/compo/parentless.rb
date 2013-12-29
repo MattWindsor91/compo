@@ -12,6 +12,10 @@ module Compo
       child
     end
 
+    def children
+      {}
+    end
+
     def url
       ''
     end
