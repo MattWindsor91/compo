@@ -1,4 +1,3 @@
-require 'forwardable'
 require 'compo/composite'
 
 module Compo
