@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'compo'
+require 'hash_composite_spec'
 
 describe Compo::HashBranch do
   describe '#initialize' do
@@ -11,4 +12,6 @@ describe Compo::HashBranch do
       expect(subject.id).to be_nil
     end
   end
+
+  it_behaves_like 'a hash composite'
 end
