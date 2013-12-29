@@ -1,7 +1,9 @@
 require 'url_referenceable_shared_examples'
+require 'movable_shared_examples'
 
 shared_examples 'a branch' do
   it_behaves_like 'a URL referenceable object'
+  it_behaves_like 'a movable object'
 
   describe '#initialize' do
     it 'initialises with a Parentless as parent' do

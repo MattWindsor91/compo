@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'compo'
 
 shared_examples 'a hash composite' do
