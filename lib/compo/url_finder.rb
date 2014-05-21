@@ -56,21 +56,19 @@ module Compo
 
     def descend
       descend_url
-      get_next_resource
-      fail_if_no_resource
+      next_resource
+      fail_with_no_resource if @resource.nil?
     end
 
-    def get_next_resource
+    def next_resource
       @resource = @resource.get_child_such_that { |id| id.to_s == @next_id }
     end
 
-    def fail_if_no_resource
-      if @resource.nil?
-        # If the proc returns a value instead of raising an error, then set
-        # things up so that value is yielded in place of the missing resource.
-        @tail = nil
-        @resource = @missing_proc.call(@url)
-      end
+    def fail_with_no_resource
+      # If the proc returns a value instead of raising an error, then set
+      # things up so that value is yielded in place of the missing resource.
+      @tail = nil
+      @resource = @missing_proc.call(@url)
     end
 
     def default_missing_proc(url)

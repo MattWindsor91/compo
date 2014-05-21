@@ -115,8 +115,8 @@ module Compo
     #
     # @return [Object]  The child if successful; nil otherwise.
     def get_child_such_that(&block)
-      child = children.each.find { |k, v| block.call(k) }
-      ( _, value ) = child unless child.nil?
+      child = children.each.find { |k, _| block.call(k) }
+      (_, value) = child unless child.nil?
       value
     end
 
