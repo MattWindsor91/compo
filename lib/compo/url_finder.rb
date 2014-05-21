@@ -65,7 +65,12 @@ module Compo
     end
 
     def fail_if_no_resource
-      @missing_proc.call(@url) if @resource.nil?
+      if @resource.nil?
+        # If the proc returns a value instead of raising an error, then set
+        # things up so that value is yielded in place of the missing resource.
+        @tail = nil
+        @resource = @missing_proc.call(@url)
+      end
     end
 
     def default_missing_proc(url)
