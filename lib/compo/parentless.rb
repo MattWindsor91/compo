@@ -26,7 +26,7 @@ module Compo
     #
     # @return [void]
     def self.for(item)
-        self.new.add(nil, item) unless item.nil?
+      self.new.add(nil, item) unless item.nil?
     end
 
     # 'Removes' a child from this Parentless
