@@ -3,11 +3,11 @@
 **Compo** is a library providing mixins and base classes for setting up
 composite objects.
 
-It implements something similar to the Gang of Four Composite pattern, but with
-the difference that children are identified in their parents by an *ID*,
-such as the index or hash key, that the child is aware of at all times.
+It's similar to the Gang of Four Composite pattern, but in Compo
+children are identified in their parents by an *ID*,
+such as an index or hash key, that the child is aware of at all times.
 
-Compo was designed for the purpose of creating models whose natural composite
+Compo was designed for models whose composite
 structure can be expressed as URLs made from their recursive ID trails.
 
 ## Installation
@@ -33,6 +33,8 @@ Compo consists of several classes and mixins that implement various parts of the
 - **Composite**, which specifies the #add/#remove/#remove_id/#get_child API on top of an implementation;
 - **Movable**, which creates a #move_to method that simplifies the act of moving a child between Composites;
 - **ParentTracker**, which implements keeping track of a child's parent and the child end of #add/#remove;
+- **URLReferenceable**, which allows the current position of an object in a hierarchy of composites to be retrieved as an URL-style reference;
+- **Branch**, which is simply a **Moveable** **URLReferenceable** **ParentTracker**.
 
 ### Composite implementation classes
 
@@ -44,9 +46,13 @@ These implement the methods needed for **Composite** to work, but don't implemen
 
 ### Simple leaf and node classes
 
-These include **Composite**, **Movable** and **ParentTracker**, and thus can be moved around, added to and removed from composites, and track their current parents and IDs.
+These include **Branch**, and thus can be moved around, added to and removed from composites, and track their current parents and IDs.
 
-- **Leaf**, which is based on NullComposite and is intended for objects that don't have children but can be placed in other Composites.
+- **Leaf**, which is based on NullComposite and is intended for objects that don't have children but can be placed in other Composites;
+- **ArrayBranch**, which is based on ArrayComposite;
+- **HashBranch**, which is based on HashComposite.
+
+Generally, you'll only need to use these classes (use **Leaf** when creating objects that can be part of other objects but not have children themselves, **ArrayBranch** when an object has a list of ordered children *whose ordering changes as more children are added and deleted*, and **HashBranch** when it has a collection of children with arbitrary IDs).
 
 ## Contributing
 
