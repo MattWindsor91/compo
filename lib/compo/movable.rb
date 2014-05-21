@@ -35,7 +35,7 @@ module Compo
     #
     # @return [void]
     def move_from_old_parent
-      parent.remove(self) unless parent.nil?
+      parent.remove(self)
     end
 
     # Performs the move to a new parent, if necessary
