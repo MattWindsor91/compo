@@ -1,4 +1,4 @@
-require 'compo/movable'
+require 'compo/branch'
 require 'compo/null_composite'
 require 'compo/parent_tracker'
 
@@ -9,19 +9,6 @@ module Compo
   # Composite API, but all additions and removals fail, and the Leaf always
   # reports no children.
   class Leaf < NullComposite
-    include Movable
-    include ParentTracker
-    include UrlReferenceable
-
-    # Initialises the Leaf
-    #
-    # The Leaf is created with no children, no parent, and no ID.
-    #
-    # @api  public
-    # @example  Creates a new Leaf.
-    #   leaf = Leaf.new
-    def initialize
-      remove_parent
-    end
+    include Branch
   end
 end

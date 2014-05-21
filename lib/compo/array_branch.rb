@@ -1,3 +1,5 @@
+require 'compo/branch'
+
 module Compo
   # A simple implementation of a branch, whose children are stored in an Array
   #
@@ -9,8 +11,6 @@ module Compo
   # This is an extension of ArrayComposite to include the Movable and
   # ParentTracker mixins.
   class ArrayBranch < ArrayComposite
-    include Movable
-    include ParentTracker
-    include UrlReferenceable
+    include Branch
   end
 end

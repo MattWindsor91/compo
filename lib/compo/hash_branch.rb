@@ -1,3 +1,5 @@
+require 'compo/branch'
+
 module Compo
   # A simple implementation of a branch, whose children are stored in an Hash
   #
@@ -10,8 +12,6 @@ module Compo
   # This is an extension of HashComposite to include the Movable and
   # ParentTracker mixins.
   class HashBranch < HashComposite
-    include Movable
-    include ParentTracker
-    include UrlReferenceable
+    include Branch
   end
 end
