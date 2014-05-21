@@ -9,6 +9,8 @@ module Compo
   # This module expects its includer to define #parent and #id.  These are
   # defined, for example, by the Compo::ParentTracker mixin.
   module UrlReferenceable
+    extend Forwardable
+
     # Returns the URL of this object
     #
     # The #url of a Composite is defined inductively as '' for composites that
@@ -61,8 +63,6 @@ module Compo
     #
     # @return [String]  The URL of this object's parent, or nil if there is no
     #   parent.
-    def parent_url
-      parent.nil? ? nil : parent.url
-    end
+    def_delegator :parent, :url, :parent_url
   end
 end

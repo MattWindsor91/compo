@@ -40,15 +40,12 @@ shared_examples 'a URL referenceable object' do
   end
 
   describe '#parent_url' do
-    context 'when the UrlReferenceable has no parent' do
+    context 'when the UrlReferenceable has a nil parent' do
       let(:parent) { nil }
 
-      specify { expect(subject.parent_url).to be_nil }
-
-      it 'calls #parent' do
-        expect(subject).to receive(:parent)
-        subject.parent_url
-      end
+      # Note that having a nil parent is considered an error in itself.
+      # Parentless objects should use Parentless as a null object.
+      specify { expect { subject.parent_url }.to raise_error }
     end
 
     context 'when the UrlReferenceable has a parent' do
