@@ -10,6 +10,25 @@ module Compo
   class Parentless
     include Composite
 
+    # Creates a new instance of Parentless and adds an item to it
+    #
+    # This effectively removes the item's parent.
+    #
+    # If this method is passed nil, then nothing happens.
+    #
+    # @api  public
+    # @example  Makes a new Parentless for an item.
+    #   Parentless.for(item)
+    # @example  Does nothing.
+    #   Parentless.for(nil)
+    #
+    # @param item [Object] The item to be reparented to a Parentless.
+    #
+    # @return [void]
+    def self.for(item)
+        self.new.add(nil, item) unless item.nil?
+    end
+
     # 'Removes' a child from this Parentless
     #
     # This always succeeds, and never triggers any other action.
