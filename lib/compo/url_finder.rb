@@ -1,9 +1,16 @@
 module Compo
-  # A 'UrlFinder' finds an object in a composite tree via its URL
+  # An 'UrlFinder' finds an object in a composite tree via its URL
   #
   # It is a method object that implements only the finding of a specific URL.
+  # UrlFinders are *not* thread-safe.
   class UrlFinder
     # Initialises a UrlFinder
+    #
+    # @api  public
+    # @example  Initialises an UrlFinder with default missing resource handling.
+    #   UrlFinder.new(composite, 'a/b/c')
+    # @example  Initialises an UrlFinder returning a default value.
+    #   UrlFinder.new(composite, 'a/b/c', missing_proc=->(_) { :default })
     #
     # @param root [Composite] A composite object serving as the root of the
     #   search tree, and the URL.
@@ -25,11 +32,15 @@ module Compo
 
     # Finds the model object at a URL, given a model root
     #
+    # @api  public
+    # @example  Finds a URL with default missing resource handling.
+    #   UrlFinder.find(composite, 'a/b/c') { |item| p item }
+    #
     # @param (see #initialize)
     #
     # @yieldparam (see #run)
     #
-    # @return (see #run)
+    # @return [Object]  The return value of the block.
     def self.find(*args, &block)
       new(*args).run(&block)
     end
@@ -39,8 +50,13 @@ module Compo
     # If the resource is found, it will be yielded to the attached block;
     # otherwise, an exception will be raised.
     #
-    # @yieldparam resource [ModelObject] The resource found.
-    # @yieldparam args [Array] The splat from above.
+    # @api  public
+    # @example  Runs an UrlFinder, returning the item unchanged.
+    #   finder.run { |item| item }
+    #   #=> item
+    #
+    # @yieldparam resource [ModelObject]  The resource found.
+    # @yieldparam args [Array]  The splat from above.
     #
     # @return [Object]  The return value of the block.
     def run
@@ -54,16 +70,35 @@ module Compo
 
     private
 
+    # Performs a descending step in the URL finder
+    #
+    # This tries to move down a level of the URL hierarchy, fetches the
+    # resource at that level, and fails according to @missing_proc if there is
+    # no such resource.
+    #
+    # @api  private
+    #
+    # @return [Void]
     def descend
       descend_url
       next_resource
       fail_with_no_resource if @resource.nil?
     end
 
+    # Seeks to the next resource pointed at by @next_id
+    #
+    # @api  private
+    #
+    # @return [Void]
     def next_resource
       @resource = @resource.get_child_such_that { |id| id.to_s == @next_id }
     end
 
+    # Fails, using @missing_proc, due to a missing resource
+    #
+    # @api  private
+    #
+    # @return [Void]
     def fail_with_no_resource
       # If the proc returns a value instead of raising an error, then set
       # things up so that value is yielded in place of the missing resource.
@@ -71,23 +106,53 @@ module Compo
       @resource = @missing_proc.call(@url)
     end
 
+    # Default value for @missing_proc
+    #
+    # @api  private
+    #
+    # @param url [String]  The URL whose finding failed.
+    #
+    # @return [Void]
     def default_missing_proc(url)
       fail("Could not find resource: #{url}")
     end
 
+    # Decides whether we have reached the end of the URL
+    #
+    # @api  private
+    #
+    # @return [Boolean]  Whether we have hit the end of the URL.
     def hit_end_of_url?
       @tail.nil? || @tail.empty?
     end
 
+    # Splits the tail on the next URL level
+    #
+    # @api  private
+    #
+    # @return [Void]
     def descend_url
       @next_id, @tail = @tail.split('/', 2)
     end
 
+    # Resets this UrlFinder so it can be used again
+    #
+    # @api  private
+    #
+    # @return [Void]
     def reset
-      @head, @tail = nil, trimmed_url
+      @next_id, @tail = nil, trimmed_url
       @resource = @root
     end
 
+    # Removes any leading or trailing slash from the URL, returning the result
+    #
+    # This only removes one leading or trailing slash.  Thus, '///' will be
+    # returned as '/'.
+    #
+    # @api  private
+    #
+    # @return [String] The URL with no trailing or leading slash.
     def trimmed_url
       first, last = 0, @url.length
       first += 1 if @url.start_with?('/')

@@ -10,6 +10,16 @@ module Compo
   module ParentTracker
     extend Forwardable
 
+    # Initialises the ParentTracker
+    #
+    # This constructor sets the tracker up so it initially has an instance of
+    # Parentless as its 'parent'.
+    #
+    # @api  semipublic
+    # @example  Creates a new ParentTracker.
+    #   ParentTracker.new
+    #
+    # @return [Void]
     def initialize
       super()
       remove_parent

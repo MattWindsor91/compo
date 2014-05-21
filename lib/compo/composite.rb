@@ -94,7 +94,7 @@ module Compo
       children[id]
     end
 
-    # Gets the child in this Composite whose ID matches a given predicate.
+    # Gets the child in this Composite whose ID matches a given predicate
     #
     # If multiple children match this predicate, the result is the first child
     # in the hash.

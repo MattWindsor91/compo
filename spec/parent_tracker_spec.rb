@@ -5,6 +5,9 @@ require 'compo'
 class MockParentTracker
   include Compo::ParentTracker
 
+  # Initialises a MockParentTracker
+  #
+  # @api  private
   def initialize(parent, id_function)
     @parent = parent
     @id_function = id_function
