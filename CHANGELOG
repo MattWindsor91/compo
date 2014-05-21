@@ -1,3 +1,11 @@
+0.3.0 (2014-05-21)
+  - Require bundler 1.6.
+  - Remove some unnecessary checks for nil: Parentless should be used instead.
+    (This could be construed as a backwards incompatibility, hence the version
+    bump.)
+  - Factor out branch mixins into a new Branch mixin.
+  - Some Rubocop fixes.
+
 0.2.0 (2013-12-29)
   - (BACKWARDS INCOMPATIBILITY) Implement Parentless as a null object for the
     result of calling #parent on a parentless child.  This case now returns
