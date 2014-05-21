@@ -12,17 +12,5 @@ module Compo
     include Movable
     include ParentTracker
     include UrlReferenceable
-
-    # Initialises the ArrayBranch
-    #
-    # The ArrayBranch is created with no children, no parent, and no ID.
-    #
-    # @api  public
-    # @example  Creates a new ArrayBranch.
-    #   branch = ArrayBranch.new
-    def initialize
-      super()
-      remove_parent
-    end
   end
 end

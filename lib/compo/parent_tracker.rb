@@ -7,11 +7,13 @@ module Compo
   # This implements #parent, #update_parent and #remove_parent to track the
   # current parent and ID function as instance variables.  It also implements
   # #parent, and #id in terms of the ID function.
-  #
-  # Subclasses should call #remove_parent in their #initialize methods, to
-  # set the parent and ID function to their default, empty values.
   module ParentTracker
     extend Forwardable
+
+    def initialize
+      super()
+      remove_parent
+    end
 
     # Gets this object's current ID
     #
