@@ -73,6 +73,9 @@ module Compo
 
     # Gets the child in this Composite with the given ID
     #
+    # The ID is compared directly against the IDs of the children of this
+    # composite.  To use a predicate to find an ID, use #get_child_such_that.
+    #
     # @api  public
     # @example  Gets the child with ID :in, if children is {in: 3}.
     #   composite.get_child(:in)
@@ -80,12 +83,41 @@ module Compo
     # @example  Fails to get the child with ID :out, if children is {in: 3}.
     #   composite.get_child(:out)
     #   #=> nil
+    # @example Fails to get the child with ID '1', if children is {1 => 3}.
+    #   composite.get_child('1')
+    #   #=> nil
     #
     # @param id  [Object]  The ID of the child to get from this Composite.
     #
     # @return [Object]  The child if successful; nil otherwise.
     def get_child(id)
       children[id]
+    end
+
+    # Gets the child in this Composite whose ID matches a given predicate.
+    #
+    # If multiple children match this predicate, the result is the first child
+    # in the hash.
+    #
+    # @api  public
+    # @example  Gets the child with ID :in, if children is {in: 3}.
+    #   composite.get_child_such_that { |x| x == :in }
+    #   #=> 3
+    # @example  Fails to get the child with ID :out, if children is {in: 3}.
+    #   composite.get_child_such_that { |x| x == :out }
+    #   #=> nil
+    # @example Get the child with an ID whose string form is '1', if children
+    #   is {1 => 3}.
+    #   composite.get_child_such_that { |x| x.to_s == '3' }
+    #   #=> 3
+    #
+    # @yieldparam id  [Object]  An ID to check against the predicate.
+    #
+    # @return [Object]  The child if successful; nil otherwise.
+    def get_child_such_that(&block)
+      child = children.each.find { |k, v| block.call(k) }
+      ( _, value ) = child unless child.nil?
+      value
     end
 
     def_delegator :children, :each

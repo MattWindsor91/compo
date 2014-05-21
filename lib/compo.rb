@@ -15,6 +15,9 @@ require 'compo/array_branch'
 require 'compo/hash_branch'
 require 'compo/leaf'
 
+# Utilities
+require 'compo/url_finder'
+
 # Misc
 require 'compo/version'
 
