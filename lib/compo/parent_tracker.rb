@@ -49,8 +49,8 @@ module Compo
     #
     # @return [void]
     def update_parent(new_parent, new_id_function)
-      fail "Parent cannot be nil: use #remove_parent." if new_parent.nil?
-      fail "ID function cannot be nil: use -> { nil }." if new_id_function.nil?
+      fail 'Parent cannot be nil: use #remove_parent.' if new_parent.nil?
+      fail 'ID function cannot be nil: use -> { nil }.' if new_id_function.nil?
 
       @parent = new_parent
       @id_function = new_id_function
