@@ -16,17 +16,35 @@ shared_examples 'a branch' do
   end
 
   describe '#url' do
-    context 'when the Leaf has no parent' do
+    context 'when the Branch has no parent' do
       it 'returns the empty string' do
         expect(subject.url).to eq('')
       end
     end
-    context 'when the Leaf is the child of a root' do
+    context 'when the Branch is the child of a root' do
       let(:parent) { Compo::HashBranch.new }
       before(:each) { subject.move_to(parent, :id) }
 
       it 'returns /ID, where ID is the ID of the Leaf' do
         expect(subject.url).to eq('/id')
+      end
+    end
+  end
+
+  describe '#move_to' do
+    context 'when the Branch has a parent' do
+      context 'when the new parent is nil' do
+        let(:parent) { Compo::HashBranch.new }
+        before(:each) { subject.move_to(parent, :id) }
+
+        it 'loses its previous parent' do
+          expect(subject.move_to(nil, :id).parent).to be_a(Compo::Parentless)
+        end
+
+        it 'is no longer a child of its parent' do
+          subject.move_to(nil, :id)
+          expect(parent.children).to_not include(subject)
+        end
       end
     end
   end
