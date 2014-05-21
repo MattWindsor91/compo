@@ -1,3 +1,8 @@
+0.3.1 (2014-05-21)
+  - Add UrlFinder class, for finding children inside a composite structure via
+    their URLs.
+  - 100% YARD, LOC and Rubocop coverage.
+
 0.3.0 (2014-05-21)
   - Require bundler 1.6.
   - Remove some unnecessary checks for nil: Parentless should be used instead.
