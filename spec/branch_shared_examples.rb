@@ -16,6 +16,11 @@ RSpec.shared_examples 'a branch' do
     end
   end
 
+  shared_context 'the branch has a parent' do
+    let(:parent) { Compo::Branches::Hash.new }
+    before(:each) { subject.move_to(parent, :id) }
+  end
+
   describe '#url' do
     context 'when the Branch has no parent' do
       it 'returns the empty string' do
@@ -23,8 +28,7 @@ RSpec.shared_examples 'a branch' do
       end
     end
     context 'when the Branch is the child of a root' do
-      let(:parent) { Compo::Branches::Hash.new }
-      before(:each) { subject.move_to(parent, :id) }
+      include_context 'the branch has a parent'
 
       it 'returns /ID, where ID is the ID of the Branch' do
         expect(subject.url).to eq('/id')
@@ -35,8 +39,7 @@ RSpec.shared_examples 'a branch' do
   describe '#move_to' do
     context 'when the Branch has a parent' do
       context 'when the new parent is nil' do
-        let(:parent) { Compo::Branches::Hash.new }
-        before(:each) { subject.move_to(parent, :id) }
+        include_context 'the branch has a parent'
 
         it 'loses its previous parent' do
           expect(subject.move_to(nil, :id).parent).to be_a(

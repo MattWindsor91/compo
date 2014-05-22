@@ -2,10 +2,7 @@ RSpec.shared_examples 'a URL referenceable object' do
   let(:parent) { nil }
   let(:id) { double(:id) }
 
-  before(:each) do
-    allow(subject).to receive(:id).and_return(id)
-    allow(subject).to receive(:parent).and_return(parent)
-  end
+  before(:each) { allow(subject).to receive_messages(id: id, parent: parent) }
 
   describe '#url' do
     context 'when the UrlReferenceable has no parent' do
@@ -19,18 +16,18 @@ RSpec.shared_examples 'a URL referenceable object' do
       end
 
       it 'calls #id' do
-        expect(subject).to receive(:id)
         subject.url
+        expect(subject).to have_received(:id)
       end
 
       it 'calls #parent' do
-        expect(subject).to receive(:parent)
         subject.url
+        expect(subject).to have_received(:parent)
       end
 
       it 'calls #child_url on the parent with the ID' do
-        expect(parent).to receive(:child_url).with(id)
         subject.url
+        expect(parent).to have_received(:child_url).with(id)
       end
 
       it 'returns the result of calling #child_url' do
