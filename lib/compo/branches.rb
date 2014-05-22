@@ -2,6 +2,7 @@ require 'compo/branches/array'
 require 'compo/branches/branch'
 require 'compo/branches/hash'
 require 'compo/branches/leaf'
+require 'compo/branches/constant'
 
 module Compo
   # Module implementing the branch classes
