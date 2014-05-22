@@ -1,9 +1,12 @@
 require 'forwardable'
-require 'compo/parentless'
+require 'compo/composites/parentless'
 
 module Compo
   module Mixins
     # Basic implementation of parent tracking as a mixin
+    #
+    # Adding this to a Composite allows the composite to be aware of its current
+    # parent.
     #
     # This implements #parent, #update_parent and #remove_parent to track the
     # current parent and ID function as instance variables.  It also implements
@@ -75,7 +78,7 @@ module Compo
       #
       # @return [void]
       def remove_parent
-        update_parent(Parentless.new, -> { nil })
+        update_parent(Compo::Composites::Parentless.new, -> { nil })
       end
     end
   end

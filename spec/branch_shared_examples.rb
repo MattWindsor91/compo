@@ -7,7 +7,7 @@ shared_examples 'a branch' do
 
   describe '#initialize' do
     it 'initialises with a Parentless as parent' do
-      expect(subject.parent).to be_a(Compo::Parentless)
+      expect(subject.parent).to be_a(Compo::Composites::Parentless)
     end
 
     it 'initialises with an ID function returning nil' do
@@ -38,7 +38,7 @@ shared_examples 'a branch' do
         before(:each) { subject.move_to(parent, :id) }
 
         it 'loses its previous parent' do
-          expect(subject.move_to(nil, :id).parent).to be_a(Compo::Parentless)
+          expect(subject.move_to(nil, :id).parent).to be_a(Compo::Composites::Parentless)
         end
 
         it 'is no longer a child of its parent' do

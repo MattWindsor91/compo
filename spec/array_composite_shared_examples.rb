@@ -123,7 +123,7 @@ shared_examples 'an array composite' do
 
       it 'calls #update_parent on the child with a Parentless' do
         expect(child1).to receive(:update_parent).once do |parent, _|
-          expect(parent).to be_a(Compo::Parentless)
+          expect(parent).to be_a(Compo::Composites::Parentless)
         end
         subject.remove(child1)
       end
@@ -171,7 +171,7 @@ shared_examples 'an array composite' do
 
       it 'calls #update_parent on the child with a Parentless' do
         expect(child1).to receive(:update_parent).once do |parent, _|
-          expect(parent).to be_a(Compo::Parentless)
+          expect(parent).to be_a(Compo::Composites::Parentless)
         end
         subject.remove_id(0)
       end

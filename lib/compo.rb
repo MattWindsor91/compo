@@ -1,12 +1,5 @@
-# Base mixins
 require 'compo/mixins'
-
-# Composite implementations
-require 'compo/composite'
-require 'compo/array_composite'
-require 'compo/hash_composite'
-require 'compo/null_composite'
-require 'compo/parentless'
+require 'compo/composites'
 
 # Leaf and branch classes
 require 'compo/array_branch'

@@ -46,7 +46,7 @@ shared_examples 'a movable object' do
       let(:new_parent) { nil }
 
       context 'and the Movable has no parent' do
-        let(:old_parent) { Compo::Parentless.new }
+        let(:old_parent) { Compo::Composites::Parentless.new }
 
         it_behaves_like 'a normal call to #move_to' do
           let(:to) { new_parent }
@@ -69,7 +69,7 @@ shared_examples 'a movable object' do
       let(:add_result) { nil }
 
       context 'and the Movable has no parent' do
-        let(:old_parent) { Compo::Parentless.new }
+        let(:old_parent) { Compo::Composites::Parentless.new }
 
         it_behaves_like 'a normal call to #move_to' do
           let(:to) { new_parent }
@@ -111,7 +111,7 @@ shared_examples 'a movable object' do
 
     context 'when the receiving parent allows the Movable to be added' do
       context 'and the Movable has no parent' do
-        let(:old_parent) { Compo::Parentless.new }
+        let(:old_parent) { Compo::Composites::Parentless.new }
 
         it_behaves_like 'a normal call to #move_to' do
           let(:to) { new_parent }

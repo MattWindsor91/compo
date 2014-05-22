@@ -4,7 +4,7 @@ require 'composite_shared_examples'
 
 # Mock implementation of a Composite
 class MockComposite
-  include Compo::Composite
+  include Compo::Composites::Composite
 end
 
 describe MockComposite do

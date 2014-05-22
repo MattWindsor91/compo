@@ -1,4 +1,5 @@
 require 'compo/branch'
+require 'compo/composites'
 
 module Compo
   # A simple implementation of a branch, whose children are stored in an Array
@@ -10,7 +11,7 @@ module Compo
   #
   # This is an extension of ArrayComposite to include the Movable and
   # ParentTracker mixins.
-  class ArrayBranch < ArrayComposite
+  class ArrayBranch < Compo::Composites::Array
     include Branch
   end
 end
