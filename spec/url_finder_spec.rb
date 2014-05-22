@@ -1,8 +1,8 @@
 require 'spec_helper'
 require 'compo'
 
-describe Compo::UrlFinder do
-  subject { Compo::UrlFinder }
+describe Compo::Finders::Url do
+  subject { Compo::Finders::Url }
   describe '.find' do
     let(:target) { Compo::Branches::Leaf.new }
 

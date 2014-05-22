@@ -1,11 +1,7 @@
 require 'compo/composites'
 require 'compo/mixins'
 require 'compo/branches'
-
-# Utilities
-require 'compo/url_finder'
-
-# Misc
+require 'compo/finders'
 require 'compo/version'
 
 # The main module for Compo
