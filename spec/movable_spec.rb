@@ -4,7 +4,7 @@ require 'movable_shared_examples'
 
 # Mock implementation of a Movable
 class MockMovable
-  include Compo::Movable
+  include Compo::Mixins::Movable
 end
 
 describe MockMovable do

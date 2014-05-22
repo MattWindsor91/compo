@@ -1,4 +1,4 @@
-require 'compo'
+require 'compo/composite'
 
 module Compo
   # A Composite that represents the non-existent parent of an orphan

@@ -1,6 +1,4 @@
-require 'compo/movable'
-require 'compo/parent_tracker'
-require 'compo/url_referenceable'
+require 'compo/mixins'
 
 module Compo
   # A movable, URL referenceable parent tracker
@@ -10,9 +8,11 @@ module Compo
   # children), ArrayBranch (a Branch with a list of numerically identified
   # children), and HashBranch (a Branch with a hash of key-identified children).
   # reports no children.
+  #
+  #
   module Branch
-    include Movable
-    include ParentTracker
-    include UrlReferenceable
+    include Mixins::Movable
+    include Mixins::ParentTracker
+    include Mixins::UrlReferenceable
   end
 end

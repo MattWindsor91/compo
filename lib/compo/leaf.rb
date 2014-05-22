@@ -1,6 +1,4 @@
 require 'compo/branch'
-require 'compo/null_composite'
-require 'compo/parent_tracker'
 
 module Compo
   # A simple implementation of a leaf node

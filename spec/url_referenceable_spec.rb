@@ -4,7 +4,7 @@ require 'url_referenceable_shared_examples'
 
 # Mock implementation of UrlReferenceable.
 class MockUrlReferenceable
-  include Compo::UrlReferenceable
+  include Compo::Mixins::UrlReferenceable
 end
 
 describe MockUrlReferenceable do

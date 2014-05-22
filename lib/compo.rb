@@ -1,10 +1,8 @@
 # Base mixins
-require 'compo/composite'
-require 'compo/movable'
-require 'compo/parent_tracker'
-require 'compo/url_referenceable'
+require 'compo/mixins'
 
 # Composite implementations
+require 'compo/composite'
 require 'compo/array_composite'
 require 'compo/hash_composite'
 require 'compo/null_composite'
