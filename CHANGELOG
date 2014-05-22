@@ -1,3 +1,11 @@
+0.4.0 (2014-05-22) ‘De Vorzon’
+  Big release with quite a few changes:
+  - (BACKWARDS INCOMPATIBILITY) Reorganise classes into submodules.  This has
+    changed the name of pretty much every class in Compo.
+  - Null composites are now renamed to be Leaf composites, for consistency.
+  - Add branch#find_url, as a shortcut for invoking a UrlFinder.
+  - Add Compo::Branches::Constant, a Leaf branch containing a constant value.
+
 0.3.1 (2014-05-21)
   - Add UrlFinder class, for finding children inside a composite structure via
     their URLs.
