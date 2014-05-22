@@ -29,7 +29,12 @@ describe Compo::Finders::Url do
         s
       end
 
-      subject { ->(*args, &b) { Compo::Finders::Url.find(root, *args, &b) } }
+      let(:correct_url)   { 'a/b/1' }
+      let(:incorrect_url) { 'a/z/1' }
+
+      let(:proc) do
+        ->(*args, &b) { Compo::Finders::Url.find(root, *args, &b) }
+      end
     end
   end
 end

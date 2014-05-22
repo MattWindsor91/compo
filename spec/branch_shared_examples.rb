@@ -1,3 +1,4 @@
+require 'url_finder_shared_examples'
 require 'url_referenceable_shared_examples'
 require 'movable_shared_examples'
 
@@ -25,7 +26,7 @@ shared_examples 'a branch' do
       let(:parent) { Compo::Branches::Hash.new }
       before(:each) { subject.move_to(parent, :id) }
 
-      it 'returns /ID, where ID is the ID of the Leaf' do
+      it 'returns /ID, where ID is the ID of the Branch' do
         expect(subject.url).to eq('/id')
       end
     end
@@ -48,6 +49,36 @@ shared_examples 'a branch' do
           expect(parent.children).to_not include(subject)
         end
       end
+    end
+  end
+end
+
+shared_examples 'a branch with children' do
+  it_behaves_like 'a branch'
+
+  describe '#find_url' do
+    it_behaves_like 'a URL finding' do
+      let(:target) { Compo::Branches::Leaf.new }
+
+      before(:each) do
+        a    = Compo::Branches::Hash.new
+        b    = Compo::Branches::Array.new
+        d    = Compo::Branches::Leaf.new
+        e    = Compo::Branches::Leaf.new
+        zero = Compo::Branches::Leaf.new
+
+        a.move_to(subject, initial_ids[0])
+        b.move_to(a, 'b')
+        zero.move_to(b, 0)
+        target.move_to(b, 1)
+        d.move_to(subject, initial_ids[1])
+        e.move_to(a, 'e')
+      end
+
+      let(:correct_url)   { "#{initial_ids[0]}/b/1" }
+      let(:incorrect_url) { "#{initial_ids[0]}/z/1" }
+
+      let(:proc) { ->(*args, &b) { subject.find_url(*args, &b) } }
     end
   end
 end
