@@ -20,16 +20,18 @@ RSpec.shared_examples 'an array composite' do
       specify { expect(subject.add(:mr_flibble, c1)).to be_nil }
 
       it 'does not add to the list of children' do
-        subject.add(:rimmer, c1)
-        expect(subject.children).to eq({})
+        expect { subject.add(:rimmer, c1) }.to_not change { subject.children }
+                                           .from({})
 
         subject.add(0, c1)
-        subject.add(:lister, c2)
-        expect(subject.children).to eq(0 => c1)
+
+        expect { subject.add(:lister, c2) }.to_not change { subject.children }
+                                           .from(0 => c1)
 
         subject.add(1, c2)
-        subject.add(:cat, c3)
-        expect(subject.children).to eq(0 => c1, 1 => c2)
+
+        expect { subject.add(:cat, c3) }.to_not change { subject.children }
+                                        .from(0 => c1, 1 => c2)
       end
     end
     context 'when the ID is Numeric' do

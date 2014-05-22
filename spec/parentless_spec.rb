@@ -12,17 +12,20 @@ RSpec.describe Compo::Composites::Parentless do
     end
 
     it 'calls #update_parent on the child with a Parentless' do
-      expect(child).to receive(:update_parent).once do |parent, _|
-        expect(parent).to be_a(Compo::Composites::Parentless)
-      end
       subject.add(:id, child)
+
+      expect(child).to have_received(:update_parent).once.with(
+        a_kind_of(Compo::Composites::Parentless),
+        anything
+      )
     end
 
     it 'calls #update_parent on the child with a nil-returning ID proc' do
-      expect(child).to receive(:update_parent).once do |_, idp|
-        expect(idp.call).to be_nil
-      end
       subject.add(:id, child)
+      expect(child).to have_received(:update_parent).once.with(
+        anything,
+        an_object_satisfying { |idp| idp.call.nil? }
+      )
     end
   end
 
