@@ -60,14 +60,15 @@ RSpec.shared_examples 'a hash composite' do
       it 'adds to the child hash' do
         expect(subject.children).to eq({})
 
-        subject.add(:a, child1)
-        expect(subject.children).to eq(a: child1)
-
-        subject.add(:b, child2)
-        expect(subject.children).to eq(a: child1, b: child2)
-
-        subject.add(:c, child3)
-        expect(subject.children).to eq(a: child1, b: child2, c: child3)
+        expect { subject.add(:a, child1) }.to change { subject.children }
+                                          .from({})
+                                          .to(a: child1)
+        expect { subject.add(:b, child2) }.to change { subject.children }
+                                          .from(a: child1)
+                                          .to(a: child1, b: child2)
+        expect { subject.add(:c, child3) }.to change { subject.children }
+                                          .from(a: child1, b: child2)
+                                          .to(a: child1, b: child2, c: child3)
       end
 
       it 'calls #update_parent on the child with itself and an ID proc' do

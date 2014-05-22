@@ -49,8 +49,7 @@ RSpec.shared_examples 'a composite' do
 
     context 'when #add! returns the child' do
       before(:each) do
-        allow(subject).to receive(:add!).and_return(child)
-        allow(subject).to receive(:id_function)
+        allow(subject).to receive_messages(add!: child, id_function: nil)
         allow(child).to receive(:update_parent)
       end
 
@@ -137,8 +136,8 @@ RSpec.shared_examples 'a composite with default #remove!' do
 
     context 'when #remove_id! is defined but #remove! is not' do
       before(:each) do
-        allow(subject).to receive(:remove_id!).and_return(remove_id_result)
-        allow(subject).to receive(:children).and_return(id => child)
+        allow(subject).to receive_messages(remove_id!: remove_id_result,
+                                           children:   { id => child })
       end
 
       context 'when #remove_id! returns nil' do
