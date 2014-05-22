@@ -4,15 +4,15 @@ require 'compo'
 describe Compo::UrlFinder do
   subject { Compo::UrlFinder }
   describe '.find' do
-    let(:target) { Compo::Leaf.new }
+    let(:target) { Compo::Branches::Leaf.new }
 
     let(:root) do
-      s    = Compo::HashBranch.new
-      a    = Compo::HashBranch.new
-      b    = Compo::ArrayBranch.new
-      d    = Compo::Leaf.new
-      e    = Compo::Leaf.new
-      zero = Compo::Leaf.new
+      s    = Compo::Branches::Hash.new
+      a    = Compo::Branches::Hash.new
+      b    = Compo::Branches::Array.new
+      d    = Compo::Branches::Leaf.new
+      e    = Compo::Branches::Leaf.new
+      zero = Compo::Branches::Leaf.new
 
       s.add('a', a)
       a.add('b', b)

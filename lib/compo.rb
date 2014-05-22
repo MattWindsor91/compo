@@ -1,10 +1,6 @@
-require 'compo/mixins'
 require 'compo/composites'
-
-# Leaf and branch classes
-require 'compo/array_branch'
-require 'compo/hash_branch'
-require 'compo/leaf'
+require 'compo/mixins'
+require 'compo/branches'
 
 # Utilities
 require 'compo/url_finder'

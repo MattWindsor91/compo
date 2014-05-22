@@ -22,7 +22,7 @@ shared_examples 'a branch' do
       end
     end
     context 'when the Branch is the child of a root' do
-      let(:parent) { Compo::HashBranch.new }
+      let(:parent) { Compo::Branches::Hash.new }
       before(:each) { subject.move_to(parent, :id) }
 
       it 'returns /ID, where ID is the ID of the Leaf' do
@@ -34,7 +34,7 @@ shared_examples 'a branch' do
   describe '#move_to' do
     context 'when the Branch has a parent' do
       context 'when the new parent is nil' do
-        let(:parent) { Compo::HashBranch.new }
+        let(:parent) { Compo::Branches::Hash.new }
         before(:each) { subject.move_to(parent, :id) }
 
         it 'loses its previous parent' do
