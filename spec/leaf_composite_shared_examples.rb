@@ -9,13 +9,13 @@ RSpec.shared_examples 'a leaf composite' do
 
   describe '#add' do
     it 'always returns nil' do
-      expect(subject.add(  1, c1)).to be_nil
-      expect(subject.add( :a, c2)).to be_nil
+      expect(subject.add(1, c1)).to be_nil
+      expect(subject.add(:a, c2)).to be_nil
       expect(subject.add(nil, c3)).to be_nil
     end
 
     it 'does not change the result of #children' do
-      expect { subject.add( 1, c1) }.to_not change { subject.children }.from({})
+      expect { subject.add(1, c1) }.to_not change { subject.children }.from({})
       expect { subject.add(:a, c2) }.to_not change { subject.children }.from({})
       expect { subject.add(:a, c3) }.to_not change { subject.children }.from({})
     end
