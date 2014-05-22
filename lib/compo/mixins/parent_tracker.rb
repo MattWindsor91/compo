@@ -26,7 +26,7 @@ module Compo
       # @return [Void]
       def initialize
         super()
-        remove_parent
+        Compo::Composites::Parentless.for(self)
       end
 
       # Gets this object's current ID
@@ -68,17 +68,6 @@ module Compo
 
         @parent = new_parent
         @id_proc = new_id_proc
-      end
-
-      # Blanks out this object's parent and ID function
-      #
-      # @api  public
-      # @example  Update this Leaf's parent and ID function.
-      #   movable.update_parent(new_parent, new_id_function)
-      #
-      # @return [void]
-      def remove_parent
-        update_parent(Compo::Composites::Parentless.new, -> { nil })
       end
     end
   end

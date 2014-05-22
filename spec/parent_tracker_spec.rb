@@ -50,16 +50,4 @@ describe MockParentTracker do
       expect(subject.id).to eq(:new_id)
     end
   end
-
-  describe '#remove_parent' do
-    it 'sets the parent to an instance of Parentless' do
-      subject.remove_parent
-      expect(subject.parent).to be_a(Compo::Composites::Parentless)
-    end
-
-    it 'sets the ID function to one returning nil' do
-      subject.remove_parent
-      expect(subject.id).to be_nil
-    end
-  end
 end
