@@ -3,45 +3,31 @@ require 'composite_shared_examples'
 RSpec.shared_examples 'a leaf composite' do
   it_behaves_like 'a composite'
 
-  let(:child1) { double(:child1) }
-  let(:child2) { double(:child2) }
-  let(:child3) { double(:child3) }
+  let(:c1) { double(:child1) }
+  let(:c2) { double(:child2) }
+  let(:c3) { double(:child3) }
 
   describe '#add' do
     it 'always returns nil' do
-      expect(subject.add(1, child1)).to be_nil
-      expect(subject.add(:a, child2)).to be_nil
-      expect(subject.add(nil, child3)).to be_nil
+      expect(subject.add(  1, c1)).to be_nil
+      expect(subject.add( :a, c2)).to be_nil
+      expect(subject.add(nil, c3)).to be_nil
     end
 
     it 'does not change the result of #children' do
-      expect(subject.children).to eq({})
-
-      subject.add(1, child1)
-      expect(subject.children).to eq({})
-
-      subject.add(:a, child2)
-      expect(subject.children).to eq({})
-
-      subject.add(:a, child3)
-      expect(subject.children).to eq({})
+      expect { subject.add( 1, c1) }.to_not change { subject.children }.from({})
+      expect { subject.add(:a, c2) }.to_not change { subject.children }.from({})
+      expect { subject.add(:a, c3) }.to_not change { subject.children }.from({})
     end
   end
 
   describe '#remove' do
-    specify { expect(subject.remove(child1)).to eq(nil) }
+    specify { expect(subject.remove(c1)).to eq(nil) }
 
     it 'does not change the result of #children' do
-      expect(subject.children).to eq({})
-
-      subject.remove(child1)
-      expect(subject.children).to eq({})
-
-      subject.remove(child2)
-      expect(subject.children).to eq({})
-
-      subject.remove(child3)
-      expect(subject.children).to eq({})
+      expect { subject.remove(c1) }.to_not change { subject.children }.from({})
+      expect { subject.remove(c2) }.to_not change { subject.children }.from({})
+      expect { subject.remove(c3) }.to_not change { subject.children }.from({})
     end
   end
 
