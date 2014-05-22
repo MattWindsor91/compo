@@ -22,10 +22,9 @@ RSpec.shared_examples 'a hash composite' do
       end
 
       it 'replaces the old child in the child hash' do
-        expect(subject.children).to eq(a: child1)
-
-        subject.add(:a, child2)
-        expect(subject.children).to eq(a: child2)
+        expect { subject.add(:a, child2) }.to change { subject.children }
+                                          .from(a: child1)
+                                          .to(a: child2)
       end
 
       it 'calls #update_parent on the new child with itself and an ID proc' do
@@ -106,9 +105,10 @@ RSpec.shared_examples 'a hash composite' do
       it 'removes the child, and only the child, from the children hash' do
         subject.add(:b, child2)
         subject.add(:c, child3)
-        expect(subject.children).to eq(a: child1, b: child2, c: child3)
-        subject.remove(child2)
-        expect(subject.children).to eq(a: child1, c: child3)
+
+        expect { subject.remove(child2) }.to change { subject.children }
+                                         .from(a: child1, b: child2, c: child3)
+                                         .to(a: child1, c: child3)
       end
     end
 
@@ -116,15 +116,13 @@ RSpec.shared_examples 'a hash composite' do
       specify { expect(subject.remove(child1)).to be_nil }
 
       it 'does not change the children' do
-        expect(subject.children).to eq({})
-        subject.remove(child1)
-        expect(subject.children).to eq({})
+        expect { subject.remove(child1) }.to_not change { subject.children }
+                                         .from({})
 
         subject.add(:a, child1)
         subject.add(:b, child2)
-        expect(subject.children).to eq(a: child1, b: child2)
-        subject.remove(child3)
-        expect(subject.children).to eq(a: child1, b: child2)
+        expect { subject.remove(child3) }.to_not change { subject.children }
+                                         .from(a: child1, b: child2)
       end
     end
   end
@@ -154,9 +152,9 @@ RSpec.shared_examples 'a hash composite' do
       it 'does not change the IDs of other children' do
         subject.add(:b, child2)
         subject.add(:c, child3)
-        expect(subject.children).to eq(a: child1, b: child2, c: child3)
-        subject.remove_id(:b)
-        expect(subject.children).to eq(a: child1, c: child3)
+        expect { subject.remove_id(:b) }.to change { subject.children }
+                                        .from(a: child1, b: child2, c: child3)
+                                        .to(a: child1, c: child3)
       end
     end
 
@@ -164,15 +162,13 @@ RSpec.shared_examples 'a hash composite' do
       specify { expect(subject.remove_id(:a)).to be_nil }
 
       it 'does not change the children' do
-        expect(subject.children).to eq({})
-        subject.remove_id(:a)
-        expect(subject.children).to eq({})
+        expect { subject.remove_id(:a) }.to_not change { subject.children }
+                                        .from({})
 
         subject.add(:a, child1)
         subject.add(:b, child2)
-        expect(subject.children).to eq(a: child1, b: child2)
-        subject.remove_id(:c)
-        expect(subject.children).to eq(a: child1, b: child2)
+        expect { subject.remove_id(:c) }.to_not change { subject.children }
+                                        .from(a: child1, b: child2)
       end
     end
   end
