@@ -1,6 +1,7 @@
 # Compo
 
 [![Gem Version](https://badge.fury.io/rb/compo.svg)](http://badge.fury.io/rb/compo)
+[![Build Status](https://travis-ci.org/CaptainHayashi/compo.svg)](https://travis-ci.org/CaptainHayashi/compo)
 
 **Compo** is a library providing mixins and base classes for setting up
 composite objects.
