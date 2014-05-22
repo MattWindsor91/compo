@@ -53,7 +53,7 @@ module Compo
       #   #=> :the_current_id
       #
       # @return [Object]  The current ID.
-      def_delegator :@id_function, :call, :id
+      def_delegator :@id_proc, :call, :id
 
       # Updates this object's parent and ID function
       #
@@ -62,12 +62,12 @@ module Compo
       #   parent_tracker.update_parent(new_parent, new_id_function)
       #
       # @return [void]
-      def update_parent(new_parent, new_id_function)
+      def update_parent(new_parent, new_id_proc)
         fail 'Parent cannot be nil: use #remove_parent.' if new_parent.nil?
-        fail 'ID function cannot be nil: use -> { nil }.' if new_id_function.nil?
+        fail 'ID function cannot be nil: use -> { nil }.' if new_id_proc.nil?
 
         @parent = new_parent
-        @id_function = new_id_function
+        @id_proc = new_id_proc
       end
 
       # Blanks out this object's parent and ID function
