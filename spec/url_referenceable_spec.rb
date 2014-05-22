@@ -7,6 +7,6 @@ class MockUrlReferenceable
   include Compo::Mixins::UrlReferenceable
 end
 
-describe MockUrlReferenceable do
+RSpec.describe MockUrlReferenceable do
   it_behaves_like 'a URL referenceable object'
 end

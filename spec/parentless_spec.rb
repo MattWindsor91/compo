@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'compo'
 
-describe Compo::Composites::Parentless do
+RSpec.describe Compo::Composites::Parentless do
   let(:child) { double(:child) }
 
   describe '#add' do

@@ -1,4 +1,4 @@
-shared_examples 'a URL referenceable object' do
+RSpec.shared_examples 'a URL referenceable object' do
   let(:parent) { nil }
   let(:id) { double(:id) }
 

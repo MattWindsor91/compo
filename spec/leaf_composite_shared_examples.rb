@@ -1,6 +1,6 @@
 require 'composite_shared_examples'
 
-shared_examples 'a leaf composite' do
+RSpec.shared_examples 'a leaf composite' do
   it_behaves_like 'a composite'
 
   let(:child1) { double(:child1) }

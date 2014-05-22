@@ -7,6 +7,6 @@ class MockBranch
   include Compo::Branches::Branch
 end
 
-describe MockBranch do
+RSpec.describe MockBranch do
   it_behaves_like 'a branch'
 end

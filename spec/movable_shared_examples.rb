@@ -1,6 +1,6 @@
 require 'compo'
 
-shared_examples 'a normal call to #move_to' do
+RSpec.shared_examples 'a normal call to #move_to' do
   it 'returns itself' do
     expect(subject.move_to(to, :test)).to eq(subject)
   end
@@ -11,14 +11,14 @@ shared_examples 'a normal call to #move_to' do
   end
 end
 
-shared_examples 'a removal from the old parent' do
+RSpec.shared_examples 'a removal from the old parent' do
   it 'calls #remove on the old parent with the Movable' do
     expect(from).to receive(:remove).once.with(subject)
     subject.move_to(to, :test)
   end
 end
 
-shared_examples 'an addition to the new parent' do
+RSpec.shared_examples 'an addition to the new parent' do
   it 'calls #add on the new parent with the ID and Movable' do
     expect(to).to_not be_nil
     expect(to).to receive(:add).once.with(:test, subject)
@@ -26,7 +26,7 @@ shared_examples 'an addition to the new parent' do
   end
 end
 
-shared_examples 'a movable object' do
+RSpec.shared_examples 'a movable object' do
   let(:old_parent)    { double(:old_parent) }
   let(:new_parent)    { double(:new_parent) }
   let(:remove_result) { subject }

@@ -7,7 +7,7 @@ class MockComposite
   include Compo::Composites::Composite
 end
 
-describe MockComposite do
+RSpec.describe MockComposite do
   before(:each) { allow(subject).to receive(:children).and_return(children) }
   let(:children) { { in_children: child } }
   let(:child) { double(:child) }

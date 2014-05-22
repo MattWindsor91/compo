@@ -13,7 +13,7 @@ class MockParentTracker
   end
 end
 
-describe MockParentTracker do
+RSpec.describe MockParentTracker do
   subject { MockParentTracker.new(parent, id_function) }
   let(:parent) { double(:parent) }
   let(:id_function) { double(:id_function) }

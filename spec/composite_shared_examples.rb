@@ -1,6 +1,6 @@
 require 'compo'
 
-shared_examples 'a removal of a child from its parent' do
+RSpec.shared_examples 'a removal of a child from its parent' do
   it 'calls #update_parent on the child with a Parentless' do
     expect(child).to receive(:update_parent).once do |parent, _|
       expect(parent).to be_a(Compo::Composites::Parentless)
@@ -16,7 +16,7 @@ shared_examples 'a removal of a child from its parent' do
   end
 end
 
-shared_examples 'a composite' do
+RSpec.shared_examples 'a composite' do
   let(:id) { double(:id) }
   let(:child) { double(:child) }
 
@@ -95,7 +95,7 @@ shared_examples 'a composite' do
   end
 end
 
-shared_examples 'a composite with default #remove!' do
+RSpec.shared_examples 'a composite with default #remove!' do
   let(:child) { double(:child) }
   let(:id) { double(:id) }
 
@@ -187,7 +187,7 @@ shared_examples 'a composite with default #remove!' do
   end
 end
 
-shared_examples 'a composite with default #remove_id!' do
+RSpec.shared_examples 'a composite with default #remove_id!' do
   let(:child) { double(:child) }
   let(:id) { double(:id) }
 

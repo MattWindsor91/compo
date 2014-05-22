@@ -7,6 +7,6 @@ class MockMovable
   include Compo::Mixins::Movable
 end
 
-describe MockMovable do
+RSpec.describe MockMovable do
   it_behaves_like 'a movable object'
 end

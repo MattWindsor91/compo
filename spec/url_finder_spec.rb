@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'compo'
 require 'url_finder_shared_examples'
 
-describe Compo::Finders::Url do
+RSpec.describe Compo::Finders::Url do
   subject { Compo::Finders::Url }
   describe '.find' do
     context 'when given a nil root' do

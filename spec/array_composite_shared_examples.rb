@@ -1,7 +1,7 @@
 require 'compo'
 require 'composite_shared_examples'
 
-shared_examples 'an array composite' do
+RSpec.shared_examples 'an array composite' do
   it_behaves_like 'a composite'
 
   let(:child1) { double(:child1) }

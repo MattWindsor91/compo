@@ -2,7 +2,7 @@ require 'url_finder_shared_examples'
 require 'url_referenceable_shared_examples'
 require 'movable_shared_examples'
 
-shared_examples 'a branch' do
+RSpec.shared_examples 'a branch' do
   it_behaves_like 'a URL referenceable object'
   it_behaves_like 'a movable object'
 
@@ -53,7 +53,7 @@ shared_examples 'a branch' do
   end
 end
 
-shared_examples 'a branch with children' do
+RSpec.shared_examples 'a branch with children' do
   it_behaves_like 'a branch'
 
   describe '#find_url' do

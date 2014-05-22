@@ -3,7 +3,7 @@ require 'compo'
 require 'branch_shared_examples'
 require 'leaf_composite_shared_examples'
 
-describe Compo::Branches::Constant do
+RSpec.describe Compo::Branches::Constant do
   let(:value) { 3.141592653 }
   subject { Compo::Branches::Constant.new(value) }
 

@@ -1,6 +1,6 @@
 require 'compo'
 
-shared_examples 'a URL finding' do
+RSpec.shared_examples 'a URL finding' do
   let(:target) { Compo::Branches::Leaf.new }
 
   context 'when given a nil URL' do
