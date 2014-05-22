@@ -9,8 +9,7 @@ class MockParentTracker
   #
   # @api  private
   def initialize(parent, id_function)
-    @parent = parent
-    @id_function = id_function
+    update_parent(parent, id_function)
   end
 end
 
