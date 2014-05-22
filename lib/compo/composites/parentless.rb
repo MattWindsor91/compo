@@ -88,8 +88,8 @@ module Compo
 
       # Returns the parent of this Parentless
       #
-      # This is always the same Parentless, for convenience's sake.  Technically,
-      # as a null object, Parentless has no parent.
+      # This is always the same Parentless, for convenience's sake.
+      # Technically, as a null object, Parentless has no parent.
       #
       # @api public
       # @example  Gets the 'parent' of a Parentless.

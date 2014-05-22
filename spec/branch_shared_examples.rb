@@ -38,7 +38,9 @@ shared_examples 'a branch' do
         before(:each) { subject.move_to(parent, :id) }
 
         it 'loses its previous parent' do
-          expect(subject.move_to(nil, :id).parent).to be_a(Compo::Composites::Parentless)
+          expect(subject.move_to(nil, :id).parent).to be_a(
+            Compo::Composites::Parentless
+          )
         end
 
         it 'is no longer a child of its parent' do
