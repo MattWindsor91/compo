@@ -57,10 +57,10 @@ RSpec.shared_examples 'an array composite' do
         end
 
         it 'calls #update_parent on the child with itself and an ID proc' do
-          expect(c1).to receive(:update_parent) do |parent, proc|
-            expect(parent).to eq(subject)
-            expect(proc.call).to eq(0)
-          end
+          expect(c1).to receive(:update_parent).with(
+            subject,
+            an_object_satisfying { |proc| proc.call == 0 }
+          )
           subject.add(0, c1)
         end
       end
