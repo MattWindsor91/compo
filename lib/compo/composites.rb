@@ -1,7 +1,7 @@
 require 'compo/composites/composite'
 require 'compo/composites/array'
 require 'compo/composites/hash'
-require 'compo/composites/null'
+require 'compo/composites/leaf'
 require 'compo/composites/parentless'
 
 module Compo

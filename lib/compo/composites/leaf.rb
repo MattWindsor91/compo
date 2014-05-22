@@ -2,14 +2,14 @@ require 'compo/composites/composite'
 
 module Compo
   module Composites
-    # Null implementation of Composite
+    # A Composite that cannot have children
     #
-    # Add/remove operations on NullComposite always fail, and #children always
-    # returns the empty hash.
+    # Add/remove operations on a leaf composite always fail, and #children
+    # always returns the empty hash.
     #
     # This is useful for leaf classes that still need to expose the composite
     # API.
-    class Null
+    class Leaf
       include Composite
 
       # Returns the empty hash
@@ -26,7 +26,7 @@ module Compo
 
       private
 
-      # Fails to add a child into the NullComposite
+      # Fails to add a child into the leaf
       #
       # @api  private
       #

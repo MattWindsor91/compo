@@ -8,7 +8,7 @@ module Compo
     # Leaves have no children, but can be moved to one.  They implement the
     # Composite API, but all additions and removals fail, and the Leaf always
     # reports no children.
-    class Leaf < Compo::Composites::Null
+    class Leaf < Compo::Composites::Leaf
       include Branch
     end
   end
