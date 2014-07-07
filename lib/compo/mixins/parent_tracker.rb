@@ -29,6 +29,19 @@ module Compo
         Compo::Composites::Parentless.for(self)
       end
 
+      # Gets whether this ParentTracker has no parent.
+      #
+      # @api  public
+      # @example  Checks an orphan ParentTracker's orphan status.
+      #   orphan.is_orphan?
+      #   #=> true
+      # @example  Checks a parented ParentTracker's orphan status.
+      #   parented.is_orphan?
+      #   #=> false
+      def is_orphan?
+        parent.is_a?(Compo::Composites::Parentless)
+      end
+
       # Gets this object's current ID
       #
       # @api  public

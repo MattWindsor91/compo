@@ -1,3 +1,4 @@
+require 'compo/finders/root'
 require 'compo/finders/url'
 
 module Compo
