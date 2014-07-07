@@ -1,3 +1,5 @@
+require 'compo/finders/root'
+
 module Compo
   module Mixins
     # Adds ID-based 'URL's to Compo classes
@@ -30,7 +32,9 @@ module Compo
       #
       # @return [String]  The URL of this object.
       def url
-        parent.child_url(id)
+        Compo::Finders::Root.new(self).reverse_each.map do |item|
+          item.is_orphan? ? '' : item.id
+        end.join('/')
       end
 
       # Returns the URL of a child of this object, with the given ID
