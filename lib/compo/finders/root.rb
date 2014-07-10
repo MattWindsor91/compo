@@ -61,6 +61,8 @@ module Compo
       #   finder.each { |item| puts item }
       #
       # @yieldparam resource [Object]  The resource found.
+      #
+      # @return [void]
       def each
         node = @leaf
         done = false

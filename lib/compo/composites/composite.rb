@@ -123,7 +123,7 @@ module Compo
 
       def_delegator :children, :each
 
-      # Performs an action on this node, if it is an actual Composite node.
+      # Performs an action on this node, if it is an actual Composite node
       #
       # By default, this does indeed run the block provided, and returns the
       # block's result.  Composites that do not represent proper nodes (for

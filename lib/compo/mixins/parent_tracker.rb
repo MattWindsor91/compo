@@ -29,7 +29,7 @@ module Compo
         Compo::Composites::Parentless.for(self)
       end
 
-      # Gets whether this ParentTracker is the root of its composite tree.
+      # Gets whether this ParentTracker is the root of its composite tree
       #
       # This is equivalent to the ParentTracker having no parent.
       #
