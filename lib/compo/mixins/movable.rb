@@ -16,8 +16,7 @@ module Compo
       #   no other live references).
       #   movable.move_to(nil, nil)
       #
-      # @param new_parent [ModelObject] The new parent for this object (can be
-      #   nil).
+      # @param new_parent [Object] The new parent for this object (can be nil).
       # @param new_id [Object]  The new ID under which the object will exist in
       #   the parent.
       #

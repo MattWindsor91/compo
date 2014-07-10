@@ -56,8 +56,8 @@ module Compo
       #   finder.run { |item| item }
       #   #=> item
       #
-      # @yieldparam resource [ModelObject]  The resource found.
-      # @yieldparam args [Array]  The splat from above.
+      # @yieldparam resource [Object]  The resource found.
+      # @yieldparam args     [Array]   The splat from above.
       #
       # @return [Object]  The return value of the block.
       def run
