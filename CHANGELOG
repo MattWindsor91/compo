@@ -1,3 +1,14 @@
+0.5.0 (2014-07-10) ‘Brimble’
+  - Implement a root finder, which has the ability to enumerate the entire path
+    from a parent-tracking composite object up to its root.
+  - Implement new method #on_node, which executes a block if, and only if, the
+    object is an actual composite node (not a Parentless, etc.).
+  - Implement new method #root?, which returns true if, and only if, the
+    object does not have a valid parent (its parent ignores #on_node).
+  - Refactor UrlReferenceable such that URLs are calculated via the root finder.
+    This is now an iterative algorithm and shouldn't exhaust the stack on large
+    composites.
+  - (BACKWARDS INCOMPATIBILITY) Remove #child_url, as it is no longer needed.
 0.4.0 (2014-05-22) ‘De Vorzon’
   Big release with quite a few changes:
   - (BACKWARDS INCOMPATIBILITY) Reorganise classes into submodules.  This has
