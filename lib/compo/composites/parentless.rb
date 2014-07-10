@@ -71,21 +71,6 @@ module Compo
         ''
       end
 
-      # Given the ID of a child in this Parentless, returns that child's URL
-      #
-      # This is always the empty string.  This is so that children of orphan
-      # objects have URLs starting with /their_id.
-      #
-      # @api  public
-      # @example  Gets the URL of the child of a Parentless.
-      #   parentless.child_url(:child_id)
-      #   #=> ''
-      #
-      # @return [Hash]  The empty string.
-      def child_url(_)
-        ''
-      end
-
       # Returns the parent of this Parentless
       #
       # This is always the same Parentless, for convenience's sake.

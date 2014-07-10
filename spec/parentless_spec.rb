@@ -43,10 +43,6 @@ RSpec.describe Compo::Composites::Parentless do
     specify { expect(subject.url).to eq('') }
   end
 
-  describe '#child_url' do
-    specify { expect(subject.child_url(:id)).to eq('') }
-  end
-
   describe '#parent' do
     it 'returns the exact same Parentless object' do
       expect(subject.parent).to be(subject)
