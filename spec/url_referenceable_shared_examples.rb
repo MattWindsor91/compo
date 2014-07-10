@@ -7,7 +7,7 @@ RSpec.shared_examples 'a URL referenceable object' do
     allow(subject).to receive_messages(
       id: id,
       parent: parent,
-      is_root?: false
+      root?: false
     )
   end
 
@@ -21,7 +21,7 @@ RSpec.shared_examples 'a URL referenceable object' do
       before(:each) do
         allow(parent).to receive_messages(
           parent: Compo::Composites::Parentless.new,
-          is_root?: true
+          root?: true
         )
       end
 

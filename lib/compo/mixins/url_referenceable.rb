@@ -33,7 +33,7 @@ module Compo
       # @return [String]  The URL of this object.
       def url
         Compo::Finders::Root.new(self).reverse_each.map do |item|
-          item.is_root? ? '' : item.id
+          item.root? ? '' : item.id
         end.join('/')
       end
 

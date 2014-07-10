@@ -35,12 +35,12 @@ module Compo
       #
       # @api  public
       # @example  Checks if a ParentTracker with no parent is a root.
-      #   orphan.is_root?
+      #   orphan.root?
       #   #=> true
       # @example  Checks if a ParentTracker with a parent is a root.
-      #   parented.is_root?
+      #   parented.root?
       #   #=> false
-      def is_root?
+      def root?
         parent.is_a?(Compo::Composites::Parentless)
       end
 
