@@ -63,8 +63,10 @@ module Compo
       # @yieldparam resource [Object]  The resource found.
       def each
         node = @leaf
-        until node.is_a?(Compo::Composites::Parentless)
+        done = false
+        until done
           yield node
+          done = node.root?
           node = node.parent
         end
       end

@@ -41,7 +41,7 @@ module Compo
       #   parented.root?
       #   #=> false
       def root?
-        parent.is_a?(Compo::Composites::Parentless)
+        parent.on_node { |p| p }.nil?
       end
 
       # Gets this object's current ID
