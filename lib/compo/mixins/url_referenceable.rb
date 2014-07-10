@@ -28,7 +28,7 @@ module Compo
       #   #=> ''
       # @example  Gets the URL of an object with a parent.
       #   leaf.url
-      #   #=> 'grandparent_id/parent_id/id'
+      #   #=> '/grandparent_id/parent_id/id'
       #
       # @return [String]  The URL of this object.
       def url
@@ -42,10 +42,10 @@ module Compo
       # @api  public
       # @example  Gets the parent URL of an object with no parent.
       #   orphan.parent_url
-      #   #=> nil
+      #   #=> ''
       # @example  Gets the URL of an object with a parent.
       #   leaf.parent_url
-      #   #=> 'grandparent_id/parent_id'
+      #   #=> '/grandparent_id/parent_id'
       #
       # @return [String]  The URL of this object's parent, or nil if there is no
       #   parent.
