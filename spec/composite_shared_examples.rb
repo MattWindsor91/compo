@@ -32,6 +32,17 @@ RSpec.shared_examples 'a composite' do
     end
   end
 
+  describe '#on_node' do
+    it 'calls the block given with the subject' do
+      expect { |block| subject.on_node(&block) }.to yield_with_args(subject)
+    end
+
+    it 'returns the result of the block' do
+      expect(subject.on_node { |subject| subject }).to eq(subject)
+      expect(subject.on_node { |subject| 3 }).to eq(3)
+    end
+  end
+
   describe '#add' do
     let(:idf) { double(:id_function) }
     before(:each) { allow(subject).to receive(:add!) }

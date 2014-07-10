@@ -123,6 +123,22 @@ module Compo
 
       def_delegator :children, :each
 
+      # Performs an action on this node, if it is an actual Composite node.
+      #
+      # By default, this does indeed run the block provided, and returns the
+      # block's result.  Composites that do not represent proper nodes (for
+      # example, Parentless) may override this to ignore the block and return
+      # nil.
+      #
+      # @api public
+      # @example  Performs an action on this Parentless.
+      #   parentless.on_node { |n| 3 }
+      #   #=> 3
+      # @return [false]
+      def on_node
+        yield self
+      end
+
       protected
 
       # Assigns this object to a child as its parent

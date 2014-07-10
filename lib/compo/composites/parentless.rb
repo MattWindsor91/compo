@@ -85,6 +85,20 @@ module Compo
         self
       end
 
+      # Performs an action on this node, if it is an actual Composite node.
+      #
+      # A Parentless is not, and thus this method returns nil and ignores
+      # any block present.
+      #
+      # @api public
+      # @example  (Doesn't) perform an action on this Parentless.
+      #   parentless.on_node { |n| 3 }
+      #   #=> nil
+      # @return [nil]
+      def on_node
+        nil
+      end
+
       protected
 
       # 'Adds' a child to this Parentless

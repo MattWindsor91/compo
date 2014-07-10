@@ -48,4 +48,15 @@ RSpec.describe Compo::Composites::Parentless do
       expect(subject.parent).to be(subject)
     end
   end
+
+  describe '#on_node' do
+    it 'ignores the block given' do
+      expect { |block| subject.on_node(&block) }.to_not yield_control
+    end
+
+    it 'returns nil' do
+      expect(subject.on_node { |subject| subject }).to be_nil
+      expect(subject.on_node { |subject| 3 }).to be_nil
+    end
+  end
 end
