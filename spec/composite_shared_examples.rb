@@ -39,7 +39,7 @@ RSpec.shared_examples 'a composite' do
 
     it 'returns the result of the block' do
       expect(subject.on_node { |subject| subject }).to eq(subject)
-      expect(subject.on_node { |subject| 3 }).to eq(3)
+      expect(subject.on_node { 3 }).to eq(3)
     end
   end
 

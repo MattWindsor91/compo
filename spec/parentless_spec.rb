@@ -56,7 +56,7 @@ RSpec.describe Compo::Composites::Parentless do
 
     it 'returns nil' do
       expect(subject.on_node { |subject| subject }).to be_nil
-      expect(subject.on_node { |subject| 3 }).to be_nil
+      expect(subject.on_node { 3 }).to be_nil
     end
   end
 end
