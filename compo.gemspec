@@ -9,11 +9,11 @@ Gem::Specification.new do |spec|
   spec.version       = Compo::VERSION
   spec.authors       = ['Matt Windsor']
   spec.email         = ['matt.windsor@ury.org.uk']
-  spec.description   = %q(
+  spec.description   = <<-DESC
     Compo provides mixins and classes that assist in implementing a variant of
     the Composite design pattern, in which each child has an ID that uniquely
     identifies it inside the parent's child set.
-  )
+  DESC
   spec.summary       = 'Composite pattern style mixins with IDs'
   spec.homepage      = 'http://github.com/CaptainHayashi/compo'
   spec.license       = 'MIT'

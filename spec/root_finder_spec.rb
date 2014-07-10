@@ -24,7 +24,7 @@ RSpec.describe Compo::Finders::Root do
         l.move_to(b, :l)
         b.move_to(a, :b)
 
-        expect { |b| subject.find(l, &b) }.to yield_with_args(a)
+        expect { |block| subject.find(l, &block) }.to yield_with_args(a)
       end
     end
   end
@@ -33,19 +33,19 @@ RSpec.describe Compo::Finders::Root do
     subject { Compo::Finders::Root.new(leaf) }
 
     context 'when given a root' do
-      let (:leaf) { Compo::Branches::Leaf.new }
+      let(:leaf) { Compo::Branches::Leaf.new }
 
       it 'returns the root' do
-        expect { |b| subject.each(&b) }.to yield_with_args(leaf)
+        expect { |block| subject.each(&block) }.to yield_with_args(leaf)
       end
     end
 
     context 'when given a leaf' do
-      let (:root) { Compo::Branches::Hash.new }
-      let (:a) { Compo::Branches::Hash.new }
-      let (:b) { Compo::Branches::Hash.new }
-      let (:c) { Compo::Branches::Hash.new }
-      let (:leaf) do
+      let(:root) { Compo::Branches::Hash.new }
+      let(:a) { Compo::Branches::Hash.new }
+      let(:b) { Compo::Branches::Hash.new }
+      let(:c) { Compo::Branches::Hash.new }
+      let(:leaf) do
         l = Compo::Branches::Leaf.new
 
         l.move_to(c,    :l)
