@@ -29,16 +29,18 @@ module Compo
         Compo::Composites::Parentless.for(self)
       end
 
-      # Gets whether this ParentTracker has no parent.
+      # Gets whether this ParentTracker is the root of its composite tree.
+      #
+      # This is equivalent to the ParentTracker having no parent.
       #
       # @api  public
-      # @example  Checks an orphan ParentTracker's orphan status.
-      #   orphan.is_orphan?
+      # @example  Checks if a ParentTracker with no parent is a root.
+      #   orphan.is_root?
       #   #=> true
-      # @example  Checks a parented ParentTracker's orphan status.
-      #   parented.is_orphan?
+      # @example  Checks if a ParentTracker with a parent is a root.
+      #   parented.is_root?
       #   #=> false
-      def is_orphan?
+      def is_root?
         parent.is_a?(Compo::Composites::Parentless)
       end
 

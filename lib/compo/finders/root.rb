@@ -48,7 +48,7 @@ module Compo
       #
       # @return [Object]  The return value of the block.
       def run
-        each { |node| yield node if node.is_orphan? }
+        each { |node| yield node if node.is_root? }
       end
 
       # Performs an action on each node in the path to the root
